@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
+
+@theme {
+  --color-brand-wine: #6b1d2a;
+  --color-brand-wine-light: #8b2d3a;
+  --color-brand-gold: #c9a84c;
+  --color-brand-gold-muted: #cca353;
+  --color-brand-gold-dim: rgba(201, 168, 76, 0.15);
+  
+  --color-brand-sanctuary: #0f0f11;
+  --color-brand-nave: #18181b;
+  --color-brand-cloister: #27272a;
+  
+  --color-lit-advent: #6b21a8;
+  --color-lit-lent: #7c3aed;
+  --color-lit-ordinary: #059669;
+  --color-lit-pentecost: #dc2626;
+  --color-lit-feast: #f5f5f4;
+  --color-lit-gaudete: #e11d48;
+  
+  --color-status-success: #10b981;
+  --color-status-warning: #f59e0b;
+  --color-status-error: #ef4444;
+  --color-status-info: #3b82f6;
+
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-card: var(--color-bg-card);
+  --color-border-dark: var(--color-border-dark);
+  --color-text-main: var(--color-text-main);
+  --color-text-muted: var(--color-text-muted);
+  --color-bg-sidebar: var(--color-bg-sidebar);
+  
+  --font-gothic: 'UnifrakturCook', serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Monastic Dark Theme Variables (Santuário, Nave, Claustro) */
+:root {
+  --color-bg-dark: #0f0f11;
+  --color-bg-card: #18181b;
+  --color-border-dark: #27272a;
+  --color-text-main: #f4f4f5;
+  --color-text-muted: #a1a1aa;
+  --color-bg-sidebar: #0f0f11;
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-main);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Custom Leaflet Map Adjustments */
+.leaflet-container {
+  background: var(--color-bg-card) !important;
+  transition: background-color 0.25s ease !important;
+}
+
+.leaflet-control-attribution {
+  background: var(--color-bg-card) !important;
+  color: var(--color-text-muted) !important;
+  opacity: 0.8;
+  font-size: 9px !important;
+  padding: 2px 6px !important;
+  border-top-left-radius: 4px;
+}
+
+/* ── Abordagem 3: Carrossel Superior e Layout de Deck de Cards ── */
+.carousel-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 24px;
+  padding: 20px 24px;
+  align-items: flex-start;
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for carousel */
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom glow effects for active paróquia cards */
+.gold-glow {
+  box-shadow: 0 4px 16px rgba(201, 168, 76, 0.08);
+}
+.gold-glow-active {
+  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.18), 0 0 16px rgba(201, 168, 76, 0.1);
+}
+
+/* Liturgical woodcut ink filters (recolors scans into gold/sepia) */
+.liturgical-woodcut-dark {
+  filter: sepia(0.4) saturate(1.2) contrast(1.1) brightness(0.75);
+  transition: filter 0.3s ease;
+}
+.liturgical-woodcut-light {
+  filter: sepia(0.3) saturate(1.1) contrast(1.05) brightness(0.95);
+  transition: filter 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
