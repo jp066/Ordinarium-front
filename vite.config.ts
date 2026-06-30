@@ -9,7 +9,8 @@ export default defineConfig({
 		sveltekit({
 			compilerOptions: {
 				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
-				runes: ({ filename }) => filename.split(/[/\\]/).includes('node_modules') ? undefined : true
+				runes: ({ filename }) =>
+					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
 
 			// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
@@ -21,4 +22,4 @@ export default defineConfig({
 	server: {
 		allowedHosts: ['7414-2804-29b8-5194-6e7e-65e4-817d-23db-8fd.ngrok-free.app']
 	}
-});	
+});

@@ -34,19 +34,15 @@
 	// Construct absolute URLs using the page store
 	let canonicalUrl = $derived($page.url.href);
 	let origin = $derived($page.url.origin);
-	
-	let absoluteImageUrl = $derived(
-		image.startsWith('http') ? image : `${origin}${image}`
-	);
+
+	let absoluteImageUrl = $derived(image.startsWith('http') ? image : `${origin}${image}`);
 
 	let displayTitle = $derived(
 		title ? `${title} | Ordinarium` : 'Ordinarium | Horários de Missas, Liturgia Diária e Paróquias'
 	);
 
 	// Safe serialization of JSON-LD schema
-	let schemaString = $derived(
-		schema ? JSON.stringify(schema, null, 2) : ''
-	);
+	let schemaString = $derived(schema ? JSON.stringify(schema, null, 2) : '');
 </script>
 
 <svelte:head>

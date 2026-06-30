@@ -1,42 +1,42 @@
-# sv
+# Ordinarium — Frontend
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Portal católico para consultar horários de missas, confissões e adorações em paróquias, explorar locais no mapa, acompanhar a liturgia diária e colaborar com doações.
 
-## Creating a project
+## Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Framework:** SvelteKit 2 (Svelte 5 — Runes mode)
+- **Linguagem:** TypeScript 6
+- **Estilos:** Tailwind CSS v4
+- **Mapas:** Leaflet + `@types/leaflet`
+- **Ícones:** Lucide (`@lucide/svelte`)
+- **Adapter:** `@sveltejs/adapter-auto` (Vercel, Netlify, Cloudflare, etc.)
+- **Lint/Format:** ESLint 10 + Prettier 3
 
-```sh
-# create a new project
-npx sv create my-app
+## Scripts
+
+| Comando           | Descrição                               |
+| ----------------- | --------------------------------------- |
+| `npm run dev`     | Inicia servidor de desenvolvimento      |
+| `npm run build`   | Build de produção                       |
+| `npm run preview` | Pré-visualiza o build                   |
+| `npm run check`   | Verificação de tipos com `svelte-check` |
+| `npm run lint`    | ESLint + Prettier                       |
+| `npm run format`  | Formata código com Prettier             |
+
+## Estrutura
+
 ```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.16.1 create --template minimal --types ts --add tailwindcss="plugins:none" eslint prettier --no-download-check --install npm apps/frontend
+src/
+├── lib/
+│   ├── assets/        # Imagens e ícones
+│   ├── components/    # Componentes Svelte reutilizáveis
+│   ├── mockData.ts    # Dados mock de igrejas/horários
+│   └── theme.svelte.ts # Estado global do tema
+├── routes/
+│   ├── api/           # Endpoints REST (churches, schedules)
+│   ├── colaborar/     # Página de doações
+│   ├── horarios/      # Grade de horários litúrgicos
+│   ├── liturgia/      # Liturgia diária (API externa)
+│   └── paroquias/     # Mapa + cards de paróquias
+└── app.html           # Template HTML principal
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

@@ -4,7 +4,7 @@ class ThemeState {
 	toggle() {
 		// Dark mode only: toggling is disabled
 	}
-	
+
 	init() {
 		if (typeof document !== 'undefined') {
 			this.isDark = true;

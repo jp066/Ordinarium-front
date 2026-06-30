@@ -31,7 +31,8 @@ export const churches: Church[] = [
 		email: 'info@ordinarium.com',
 		lat: -23.5489,
 		lng: -46.6388,
-		bgImage: 'https://yt3.googleusercontent.com/KWss2z2TO6BFIr4NNtBg3rSs3RH9DGO12NrLnuUOp5LshX2KR7odbgJmuCqY7t3_Wm7hefyRWB4=s900-c-k-c0x00ffffff-no-rj',
+		bgImage:
+			'https://yt3.googleusercontent.com/KWss2z2TO6BFIr4NNtBg3rSs3RH9DGO12NrLnuUOp5LshX2KR7odbgJmuCqY7t3_Wm7hefyRWB4=s900-c-k-c0x00ffffff-no-rj',
 		schedules: [
 			{ type: 'Missa', day: 'Dom', time: '14:30' },
 			{ type: 'Confissão', day: 'Dom', time: '16:00' },
@@ -47,7 +48,8 @@ export const churches: Church[] = [
 		email: 'contato@catedraldase.org.br',
 		lat: -23.5505,
 		lng: -46.6333,
-		bgImage: 'https://coelhomochileiro.com.br/wp-content/uploads/2022/03/historia-catedral-da-se-sao-paulo.jpg',
+		bgImage:
+			'https://coelhomochileiro.com.br/wp-content/uploads/2022/03/historia-catedral-da-se-sao-paulo.jpg',
 		schedules: [
 			{ type: 'Missa', day: 'Dom', time: '09:00' },
 			{ type: 'Missa', day: 'Dom', time: '11:00' },
@@ -63,7 +65,8 @@ export const churches: Church[] = [
 		email: 'secretaria@nsbrasil.org.br',
 		lat: -23.5672,
 		lng: -46.6749,
-		bgImage: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/Igreja_Nossa_Senhora_do_Brasil%2C_SP_1.JPG',
+		bgImage:
+			'https://upload.wikimedia.org/wikipedia/commons/8/8e/Igreja_Nossa_Senhora_do_Brasil%2C_SP_1.JPG',
 		schedules: [
 			{ type: 'Missa', day: 'Dom', time: '11:30' },
 			{ type: 'Confissão', day: 'Dom', time: '17:00' },
@@ -79,7 +82,8 @@ export const churches: Church[] = [
 		email: 'secretaria@saojudas.org.br',
 		lat: -23.6214,
 		lng: -46.6409,
-		bgImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQvI_p0VBCgq6ohrak38AaysVUGQldt9kpjA&s',
+		bgImage:
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQvI_p0VBCgq6ohrak38AaysVUGQldt9kpjA&s',
 		schedules: [
 			{ type: 'Missa', day: 'Dom', time: '08:30' },
 			{ type: 'Adoração', day: 'Dom', time: '19:00' },
@@ -94,7 +98,8 @@ export const churches: Church[] = [
 		email: 'parquia.sjoaoevangelista@arquidiocesedeteresina.org.br',
 		lat: -5.1389,
 		lng: -42.8019,
-		bgImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Teresina_panorama.jpg/1280px-Teresina_panorama.jpg',
+		bgImage:
+			'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Teresina_panorama.jpg/1280px-Teresina_panorama.jpg',
 		schedules: [
 			{ type: 'Missa', day: 'Dom', time: '07:30' },
 			{ type: 'Missa', day: 'Dom', time: '19:00' },
@@ -111,7 +116,8 @@ export const churches: Church[] = [
 		email: 'paroquiasaojoaoteresina@gmail.com',
 		lat: -5.0748,
 		lng: -42.7879,
-		bgImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Teresina_panorama.jpg/1280px-Teresina_panorama.jpg',
+		bgImage:
+			'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Teresina_panorama.jpg/1280px-Teresina_panorama.jpg',
 		schedules: [
 			{ type: 'Missa', day: 'Dom', time: '07:00' },
 			{ type: 'Missa', day: 'Dom', time: '09:00' },
@@ -155,7 +161,7 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia de São José',
 		churchId: 'c1',
 		notes: 'Sana omin da paróquia',
-		confidenceScore: 0.50
+		confidenceScore: 0.5
 	},
 	{
 		id: 's4',
@@ -188,7 +194,7 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia de São José',
 		churchId: 'c1',
 		notes: 'Sana omin da paróquia',
-		confidenceScore: 0.50
+		confidenceScore: 0.5
 	},
 	{
 		id: 's7',
@@ -221,7 +227,7 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia de São José',
 		churchId: 'c1',
 		notes: 'Peisacamento de Paróquia',
-		confidenceScore: 0.50
+		confidenceScore: 0.5
 	},
 	{
 		id: 's10',
@@ -277,7 +283,7 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia São João Evangelista e São João Batista',
 		churchId: 'c5',
 		notes: 'Sacramento da reconciliação',
-		confidenceScore: 0.90
+		confidenceScore: 0.9
 	},
 	{
 		id: 's15',
@@ -299,7 +305,7 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia São João Evangelista e São João Batista',
 		churchId: 'c5',
 		notes: 'Missa de sexta-feira',
-		confidenceScore: 0.90
+		confidenceScore: 0.9
 	},
 	// Paróquia São João Batista - Teresina (c6)
 	{
@@ -344,7 +350,7 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia São João Batista',
 		churchId: 'c6',
 		notes: 'Sacramento da reconciliação',
-		confidenceScore: 0.90
+		confidenceScore: 0.9
 	},
 	{
 		id: 's21',
@@ -355,7 +361,7 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia São João Batista',
 		churchId: 'c6',
 		notes: 'Adoração ao Santíssimo Sacramento',
-		confidenceScore: 0.90
+		confidenceScore: 0.9
 	},
 	{
 		id: 's22',
@@ -366,6 +372,6 @@ export const schedules: Schedule[] = [
 		churchName: 'Paróquia São João Batista',
 		churchId: 'c6',
 		notes: 'Missa de terça-feira',
-		confidenceScore: 0.90
+		confidenceScore: 0.9
 	}
 ];

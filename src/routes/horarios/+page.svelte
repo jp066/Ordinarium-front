@@ -48,10 +48,14 @@
 	// Helper for icons based on schedule type
 	function getIcon(type: string) {
 		switch (type) {
-			case 'Missa': return BookOpen;
-			case 'Confissão': return Heart;
-			case 'Adoração': return Flame;
-			default: return BookOpen;
+			case 'Missa':
+				return BookOpen;
+			case 'Confissão':
+				return Heart;
+			case 'Adoração':
+				return Flame;
+			default:
+				return BookOpen;
 		}
 	}
 
@@ -67,7 +71,8 @@
 		} else if (hour >= 12 && hour < 18) {
 			return {
 				name: 'Vésperas (Tarde)',
-				verse: '“Suba a minha oração como incenso na vossa presença; a elevação das minhas mãos como sacrifício vespertino.”',
+				verse:
+					'“Suba a minha oração como incenso na vossa presença; a elevação das minhas mãos como sacrifício vespertino.”',
 				imageUrl: liturgicalVesperas
 			};
 		} else {
@@ -80,18 +85,29 @@
 	});
 </script>
 
-<SEO 
+<SEO
 	title="Horários de Missas, Confissões e Adorações"
 	description="Consulte os horários de missas, confissões e adorações ao Santíssimo Sacramento em tempo real. Filtre por dia da semana, paróquia e encontre celebrações perto de você."
-	keywords={['horário de missa', 'missa hoje', 'horários de missas', 'horário de confissão', 'adoração ao santíssimo', 'igreja católica', 'paróquias', 'celebrar']}
+	keywords={[
+		'horário de missa',
+		'missa hoje',
+		'horários de missas',
+		'horário de confissão',
+		'adoração ao santíssimo',
+		'igreja católica',
+		'paróquias',
+		'celebrar'
+	]}
 />
 
-<div class="flex flex-col h-full w-full bg-transparent text-text-main transition-colors duration-200 relative overflow-hidden min-h-0">
-	<SchedulesView 
-		{churches} 
-		{schedules} 
-		bind:selectedChurchId={nav.selectedChurchId} 
-		{getIcon} 
+<div
+	class="flex flex-col h-full w-full bg-transparent text-text-main transition-colors duration-200 relative overflow-hidden min-h-0"
+>
+	<SchedulesView
+		{churches}
+		{schedules}
+		bind:selectedChurchId={nav.selectedChurchId}
+		{getIcon}
 		{currentLiturgicalHour}
 	/>
 </div>
