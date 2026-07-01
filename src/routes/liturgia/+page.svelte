@@ -456,12 +456,12 @@
 							onclick={() => scrollToSection(sec.id)}
 							class="w-full text-left py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer border flex items-center gap-2.5
 							{activeSection === sec.id
-								? 'bg-brand-wine/10 border-brand-wine/25 text-brand-wine font-extrabold'
+								? 'bg-brand-wine/10 border-brand-wine/25 text-brand-wine-text font-extrabold'
 								: 'bg-transparent border-transparent text-text-muted hover:text-text-main'}"
 						>
 							<sec.icon
 								size={13}
-								class={activeSection === sec.id ? 'text-brand-wine' : 'text-text-muted/60'}
+								class={activeSection === sec.id ? 'text-brand-wine-text' : 'text-text-muted/60'}
 							/>
 							<span class="line-clamp-1">{sec.label}</span>
 						</button>
@@ -551,7 +551,7 @@
 
 									{#if leitura.opcoes[0]?.referencia}
 										<span
-											class="text-[10px] px-2 py-0.5 rounded-full font-mono font-bold tracking-tight border bg-brand-wine/10 text-brand-wine border-brand-wine/20"
+											class="text-[10px] px-2 py-0.5 rounded-full font-mono font-bold tracking-tight border bg-brand-wine/10 text-brand-wine-text border-brand-wine/20"
 										>
 											{leitura.opcoes[0].referencia}
 										</span>
@@ -576,9 +576,9 @@
 
 											{#if opcao.refrao}
 												<div
-													class="rounded-r-xl p-3.5 select-all flex items-start gap-3 border-y border-r bg-brand-wine/10 border-border-dark/30 border-l-4 border-l-brand-wine/60"
+													class="rounded-r-xl p-3.5 select-all flex items-start gap-3 border-y border-r bg-brand-wine/10 border-border-dark/30 border-l-4 border-l-brand-wine-text/60"
 												>
-													<Music size={14} class="shrink-0 mt-0.5 text-brand-wine" />
+													<Music size={14} class="shrink-0 mt-0.5 text-brand-wine-text" />
 													<p class="text-xs sm:text-sm font-bold italic text-text-main">
 														Refrão: {opcao.refrao}
 													</p>
@@ -616,9 +616,9 @@
 								class="p-5 pb-3 border-b border-border-dark/40 bg-bg-card/40 select-none flex items-center gap-2"
 							>
 								<div
-									class="h-6 w-6 rounded-md flex items-center justify-center shrink-0 border border-brand-wine/25 bg-brand-wine-dim"
+									class="h-6 w-6 rounded-md flex items-center justify-center shrink-0 border border-brand-wine-text/25 bg-brand-wine-dim"
 								>
-									<Sparkles size={12} class="text-brand-wine" />
+									<Sparkles size={12} class="text-brand-wine-text" />
 								</div>
 								<h2 class="text-xs font-bold uppercase tracking-wider text-brand-gold">
 									Orações da Missa
@@ -630,7 +630,7 @@
 								<!-- Coleta -->
 								<div class="space-y-2">
 									<h3
-										class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine"
+										class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine-text"
 									>
 										Coleta (Oração do Dia)
 									</h3>
@@ -642,7 +642,7 @@
 								<!-- Oferendas -->
 								<div class="space-y-2">
 									<h3
-										class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine"
+										class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine-text"
 									>
 										Sobre as Oferendas
 									</h3>
@@ -654,7 +654,7 @@
 								<!-- Comunhão -->
 								<div class="space-y-2">
 									<h3
-										class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine"
+										class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine-text"
 									>
 										Depois da Comunhão
 									</h3>
@@ -668,7 +668,7 @@
 									{#each activeCelebration.oracoes.extras as extra}
 										<div class="space-y-2 border-t border-border-dark/40 pt-4">
 											<h3
-												class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine"
+												class="text-xs font-bold uppercase tracking-wider select-none text-brand-wine-text"
 											>
 												{extra.titulo}
 											</h3>

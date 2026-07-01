@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { CreditCard, Smartphone, Shield, Check, RefreshCw, Copy } from '@lucide/svelte';
-	import ColaborarTabs from './ColaborarTabs.svelte';
 
 	let donationAmount = $state<number>(25);
 	let customAmount = $state<string>('');
@@ -49,9 +48,6 @@
 			Ajude a manter esta iniciativa católica viva e atualizada.
 		</p>
 	</div>
-
-	<!-- Navigation Tabs -->
-	<ColaborarTabs activeTab="apoiar" />
 
 	<!-- Content Container -->
 	<div class="flex flex-col lg:flex-row gap-8 items-stretch w-full max-w-5xl mx-auto mt-2">

@@ -1,0 +1,15 @@
+node_modules
+.svelte-kit
+build
+.git
+.gitignore
+.npmrc
+.prettierignore
+.prettierrc
+eslint.config.js
+exemplo-comprovante.png
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

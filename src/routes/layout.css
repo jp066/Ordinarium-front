@@ -4,6 +4,8 @@
 @theme {
 	--color-brand-wine: #6b1d2a;
 	--color-brand-wine-light: #8b2d3a;
+	--color-brand-wine-text: #e25c73;
+	--color-brand-wine-dim: rgba(226, 92, 115, 0.15);
 	--color-brand-gold: #c9a84c;
 	--color-brand-gold-muted: #cca353;
 	--color-brand-gold-dim: rgba(201, 168, 76, 0.15);
@@ -34,6 +36,13 @@
 	--font-gothic: 'UnifrakturCook', serif;
 	--font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 	--font-mono: 'JetBrains Mono', monospace;
+
+	--radius-3xl: 12px;
+	--radius-2xl: 10px;
+	--radius-xl: 8px;
+	--radius-lg: 6px;
+	--radius-md: 4px;
+	--radius-sm: 2px;
 }
 
 /* Monastic Dark Theme Variables (Santuário, Nave, Claustro) */
@@ -59,10 +68,10 @@ body {
 		'Open Sans',
 		'Helvetica Neue',
 		sans-serif;
-	background-color: var(--color-bg-dark);
+	background: linear-gradient(to bottom, #141414, #0f0f11);
+	background-attachment: fixed;
 	color: var(--color-text-main);
 	transition:
-		background-color 0.25s ease,
 		border-color 0.25s ease,
 		color 0.25s ease;
 }

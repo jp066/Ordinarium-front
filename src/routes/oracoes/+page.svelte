@@ -1,5 +1,6 @@
 <script lang="ts">
 	/* eslint-disable svelte/no-navigation-without-resolve */
+	import { page } from '$app/stores';
 	import SEO from '$lib/components/SEO.svelte';
 	import {
 		Sparkles,
@@ -52,6 +53,16 @@
 
 	// Navigation tab state
 	let activeTab = $state<'prayers' | 'examination'>('prayers');
+
+	// Synchronize tab state with query parameter
+	$effect(() => {
+		const tabParam = $page.url.searchParams.get('tab');
+		if (tabParam === 'exame' || tabParam === 'examination') {
+			activeTab = 'examination';
+		} else if (tabParam === 'prayers' || tabParam === 'oracoes') {
+			activeTab = 'prayers';
+		}
+	});
 
 	// Prayers list state
 	let searchQuery = $state('');
@@ -210,41 +221,17 @@
 			</div>
 		</div>
 	{:else}
-		<!-- Header Tab Navigation -->
+		<!-- Header Tab Navigation (Title only, switcher removed) -->
 		<div
-			class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-1 select-none border-b border-border-dark/40 shrink-0"
+			class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-3 select-none border-b border-border-dark/40 shrink-0"
 		>
 			<div class="flex flex-col">
 				<span class="text-[9px] uppercase font-bold tracking-widest text-brand-gold"
 					>Espiritualidade</span
 				>
-				<h2 class="text-sm font-bold text-text-main">Orações e Devoções</h2>
-			</div>
-
-			<!-- Tab buttons -->
-			<div
-				class="flex items-center gap-1.5 rounded-xl p-1 border border-border-dark bg-bg-dark select-none shadow-sm"
-			>
-				<button
-					onclick={() => (activeTab = 'prayers')}
-					class="text-xs px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-2
-					{activeTab === 'prayers'
-						? 'bg-brand-wine text-white shadow-md'
-						: 'text-text-muted hover:text-text-main'}"
-				>
-					<Sparkles size={12} />
-					<span>Orações</span>
-				</button>
-				<button
-					onclick={() => (activeTab = 'examination')}
-					class="text-xs px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer flex items-center gap-2
-					{activeTab === 'examination'
-						? 'bg-brand-wine text-white shadow-md'
-						: 'text-text-muted hover:text-text-main'}"
-				>
-					<BookOpen size={12} />
-					<span>Exame de Consciência</span>
-				</button>
+				<h2 class="text-sm font-bold text-text-main">
+					{activeTab === 'examination' ? 'Exame de Consciência' : 'Orações e Devoções'}
+				</h2>
 			</div>
 		</div>
 

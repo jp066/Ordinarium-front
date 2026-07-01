@@ -18,13 +18,16 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		// Processa a requisição normal
 		const response = await resolve(event);
-		
+
 		// Clona a resposta para permitir modificação de cabeçalhos
 		const corsResponse = new Response(response.body, response);
 		corsResponse.headers.set('Access-Control-Allow-Origin', '*');
-		corsResponse.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+		corsResponse.headers.set(
+			'Access-Control-Allow-Methods',
+			'GET, POST, PUT, DELETE, PATCH, OPTIONS'
+		);
 		corsResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, *');
-		
+
 		return corsResponse;
 	}
 

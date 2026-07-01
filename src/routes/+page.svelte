@@ -1,9 +1,19 @@
 <script lang="ts">
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 	import HomeView from '$lib/components/HomeView.svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import liturgicalLaudes from '$lib/assets/liturgical_laudes.png';
 	import liturgicalVesperas from '$lib/assets/liturgical_vesperas.png';
 	import liturgicalCompletas from '$lib/assets/liturgical_completas.png';
+
+	// Receive data loaded by the universal load function (+page.ts)
+	let { data } = $props<{
+		data: {
+			churches: any[];
+			schedules: any[];
+			liturgiaData: any;
+		};
+	}>();
 
 	// Derive liturgical hour state and illustration URLs based on local time
 	let currentLiturgicalHour = $derived.by(() => {
@@ -52,32 +62,12 @@
 	schema={homeSchema}
 />
 
-<div
-	class="flex flex-col h-screen w-screen bg-bg-dark text-text-main transition-colors duration-200 relative overflow-hidden"
->
-	<!-- Animated Background Texture (Giphy) -->
-	<div class="absolute inset-0 z-0 pointer-events-none select-none opacity-[0.08] overflow-hidden">
-		<img src="/bg_texture.gif" alt="" class="w-full h-full object-cover" />
-	</div>
-
-	<!-- Portal content wrapper -->
-	<div class="relative z-10 flex-1 flex flex-col justify-between items-center py-6 min-h-0">
-		<!-- Spacer -->
-		<div></div>
-
-		<!-- Main portal view -->
-		<div class="w-full min-h-0 overflow-y-auto flex flex-col justify-start items-center">
-			<HomeView {currentLiturgicalHour} />
-		</div>
-
-		<!-- Footer with API link -->
-		<footer class="w-full hidden sm:flex flex-col items-center gap-1.5 py-3 select-none">
-			<a
-				href="/api"
-				class="text-[11px] font-bold text-text-muted/60 hover:text-brand-gold transition-colors duration-200 cursor-pointer tracking-widest uppercase font-sans hover:underline decoration-brand-gold/30 underline-offset-4"
-			>
-				Documentação da API
-			</a>
-		</footer>
-	</div>
+<!-- Main dashboard view, scrollable within the layout wrapper -->
+<div class="flex-1 w-full min-h-0 overflow-y-auto bg-transparent text-text-main">
+	<HomeView
+		{currentLiturgicalHour}
+		churches={data.churches}
+		schedules={data.schedules}
+		liturgiaData={data.liturgiaData}
+	/>
 </div>

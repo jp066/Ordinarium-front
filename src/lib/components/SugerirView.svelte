@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Check, Sparkles, Send, ShieldCheck, MapPin } from '@lucide/svelte';
-	import ColaborarTabs from './ColaborarTabs.svelte';
 
 	// Suggestion form logic (mock submission)
 	let suggestName = $state('');
@@ -31,9 +30,6 @@
 			Ajude a manter esta iniciativa católica viva e atualizada.
 		</p>
 	</div>
-
-	<!-- Navigation Tabs -->
-	<ColaborarTabs activeTab="sugerir" />
 
 	<!-- Content Container -->
 	<div class="flex flex-col lg:flex-row gap-8 items-stretch w-full max-w-5xl mx-auto mt-2">
