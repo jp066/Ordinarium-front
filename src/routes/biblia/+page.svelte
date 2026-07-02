@@ -168,7 +168,7 @@
 
 {#if !data.success}
 	<!-- Error State -->
-	<div class="w-full h-[calc(100vh-4rem)] flex items-center justify-center p-6">
+	<div class="w-full h-[calc(100dvh-4rem)] flex items-center justify-center p-6">
 		<div class="flex flex-col items-center justify-center text-center p-8 max-w-md bg-bg-card border border-border-dark shadow-2xl rounded-2xl animate-fade-in">
 			<div class="h-12 w-12 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/25 mb-4">
 				<Compass class="h-6 w-6 text-red-400" />
@@ -189,7 +189,7 @@
 	</div>
 {:else}
 	<!-- Main Layout Container -->
-	<div class="w-full h-[calc(100vh-4rem)] overflow-hidden flex flex-col lg:flex-row max-w-7xl mx-auto font-sans text-text-main bg-transparent transition-colors duration-200">
+	<div class="w-full h-[calc(100dvh-4rem)] overflow-hidden flex flex-col min-h-0 lg:flex-row max-w-7xl mx-auto font-sans text-text-main bg-transparent transition-colors duration-200">
 		
 		<!-- Desktop Left Sidebar (Glassmorphism layout) -->
 		<aside class="hidden lg:flex flex-col w-80 shrink-0 border-r border-border-dark/40 bg-bg-sidebar/20 p-5 gap-5 h-full overflow-hidden select-none">
@@ -237,7 +237,7 @@
 		</aside>
 
 		<!-- Right Side / Main Area -->
-		<div class="flex-1 flex flex-col min-w-0 h-full relative overflow-hidden bg-transparent">
+		<div class="flex-1 flex flex-col min-w-0 min-h-0 h-full relative overflow-hidden bg-transparent">
 			
 			<!-- Sticky Top Bar (Glow controls, premium layout) -->
 			<header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 lg:p-5 select-none border-b border-border-dark/40 shrink-0 bg-bg-card/20 backdrop-blur-md relative z-30">

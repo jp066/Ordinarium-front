@@ -227,7 +227,7 @@
 	{@render children()}
 {:else}
 	<div
-		class="flex h-screen w-screen overflow-hidden bg-transparent text-text-main font-sans transition-colors duration-200 relative"
+		class="flex h-dvh w-screen overflow-hidden bg-transparent text-text-main font-sans transition-colors duration-200 relative"
 	>
 		<!-- Toast Notification for "Em Breve" features -->
 		{#if showToast}
@@ -681,7 +681,7 @@
 			{/if}
 
 			<!-- Pages container -->
-			<main class="flex-1 flex flex-col overflow-hidden w-full relative z-10">
+			<main class="flex-1 flex flex-col min-h-0 overflow-hidden w-full relative z-10">
 				{@render children()}
 			</main>
 		</div>

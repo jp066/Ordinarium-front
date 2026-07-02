@@ -87,7 +87,7 @@
 />
 
 <div
-	class="h-screen w-screen bg-transparent text-text-main font-sans flex flex-col overflow-hidden"
+	class="h-dvh w-screen bg-transparent text-text-main font-sans flex flex-col overflow-hidden"
 >
 	<!-- Top Bar (fixed header for the doc page) -->
 	<div

@@ -260,7 +260,7 @@
 />
 
 <div
-	class="w-full h-[calc(100vh-4rem)] overflow-hidden flex flex-col justify-start items-center py-4 px-4 sm:px-10 gap-4 max-w-5xl mx-auto font-sans relative bg-transparent text-text-main transition-colors duration-200"
+	class="w-full h-[calc(100dvh-4rem)] overflow-hidden flex flex-col min-h-0 justify-start items-center py-4 px-4 sm:px-10 gap-4 max-w-5xl mx-auto font-sans relative bg-transparent text-text-main transition-colors duration-200"
 >
 	{#if !data.success}
 		<!-- Error State -->
