@@ -2,6 +2,7 @@
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	/* eslint-disable svelte/no-navigation-without-resolve */
 	import { onMount, setContext } from 'svelte';
+	import { fly, fade } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import './layout.css';
@@ -20,7 +21,8 @@
 		MessageSquare,
 		Navigation,
 		X,
-		ChevronRight
+		ChevronRight,
+		Menu
 	} from '@lucide/svelte';
 	import { theme } from '$lib/theme.svelte';
 	import logo from '$lib/assets/logo-removebg.png';
@@ -478,7 +480,7 @@
 		<div class="flex-1 flex flex-col min-h-0 overflow-hidden relative z-10">
 			<!-- Mobile Topbar Header -->
 			<header
-				class="flex md:hidden h-16 w-full items-center justify-between border-b border-border-dark bg-bg-sidebar/95 backdrop-blur-md px-6 shrink-0 z-40"
+				class="glass-header flex md:hidden h-16 w-full items-center justify-between px-6 shrink-0 z-40"
 			>
 				<!-- Brand Header -->
 				<a href="/" class="flex items-center gap-3">
@@ -491,24 +493,10 @@
 				<!-- Hamburger menu icon -->
 				<button
 					onclick={() => (showMobileMenu = !showMobileMenu)}
-					class="flex h-10 w-10 items-center justify-center rounded-xl border border-border-dark bg-bg-card hover:bg-bg-card/90 hover:border-brand-gold/30 shadow-sm transition-all duration-200 cursor-pointer"
+					class="text-brand-gold hover:opacity-80 active:scale-90 active:rotate-12 transition-all duration-200 cursor-pointer p-1"
 					title="Menu"
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						class="h-6 w-6 text-brand-gold"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.8"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<ellipse cx="12" cy="5" rx="7" ry="1.5" />
-						<path d="M 4 11 C 7 10, 17 10, 20 11 M 7 11 V 14.5 M 17 11 V 14.5" />
-						<path d="M 8.5 11 C 8.5 15.5, 15.5 15.5, 15.5 11" />
-						<path d="M 12 14.8 V 19.5 M 9.5 19.5 H 14.5" />
-					</svg>
+					<Menu size={22} />
 				</button>
 			</header>
 
@@ -518,13 +506,15 @@
 					<!-- Backdrop -->
 					<button
 						onclick={() => (showMobileMenu = false)}
-						class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+						class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+						transition:fade={{ duration: 150 }}
 						aria-label="Fechar menu"
 					></button>
 
 					<!-- Drawer container slide-out from the left -->
 					<aside
-						class="relative flex flex-col w-64 bg-bg-sidebar border-r border-border-dark h-full p-5 justify-between z-10 animate-fade-in"
+						class="relative flex flex-col w-64 bg-bg-sidebar border-r border-border-dark h-full p-5 justify-between z-10"
+						transition:fly={{ x: -260, duration: 200 }}
 					>
 						<div class="flex flex-col gap-6 overflow-y-auto min-h-0 flex-1 pr-1 pb-4">
 							<!-- Header -->
@@ -541,7 +531,7 @@
 								</a>
 								<button
 									onclick={() => (showMobileMenu = false)}
-									class="text-text-muted hover:text-text-main cursor-pointer"
+									class="text-text-muted hover:text-text-main active:scale-90 active:rotate-90 transition-all duration-200 cursor-pointer"
 								>
 									<X size={18} />
 								</button>
