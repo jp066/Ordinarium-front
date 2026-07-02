@@ -245,7 +245,7 @@
 				? 'w-20 p-3'
 				: 'w-64 p-5'} bg-bg-sidebar border-r border-border-dark select-none shrink-0 h-full justify-between relative z-20 transition-all duration-300 ease-in-out"
 		>
-			<div class="flex flex-col gap-6">
+			<div class="flex flex-col gap-6 overflow-y-auto min-h-0 flex-1 pr-1">
 				<!-- Brand Logo & Gothic Title -->
 				<div
 					class="flex {sidebarCollapsed
@@ -526,7 +526,7 @@
 					<aside
 						class="relative flex flex-col w-64 bg-bg-sidebar border-r border-border-dark h-full p-5 justify-between z-10 animate-fade-in"
 					>
-						<div class="flex flex-col gap-6">
+						<div class="flex flex-col gap-6 overflow-y-auto min-h-0 flex-1 pr-1 pb-4">
 							<!-- Header -->
 							<div class="flex items-center justify-between">
 								<a
