@@ -10,20 +10,30 @@
 		Clock,
 		MapPin,
 		BookOpen,
+		Book,
 		Sparkles,
+		Flame,
 		CheckSquare,
 		Star,
 		User,
 		Heart,
 		MessageSquare,
 		Navigation,
-		X
+		X,
+		ChevronRight
 	} from '@lucide/svelte';
 	import { theme } from '$lib/theme.svelte';
 	import logo from '$lib/assets/logo-removebg.png';
 
 	// Svelte 5 Runes for children and layout data
-	let { children, data } = $props<{ children: any; data: { churches: any[]; schedules: any[] } }>();
+	let { children, data } = $props<{
+		children: any;
+		data: {
+			churches: any[];
+			schedules: any[];
+			user?: { name: string; avatar: string; email: string };
+		};
+	}>();
 
 	// Share navigation state via context (contains activeRoute and globally shared selectedChurchId)
 	const navState = $state({
@@ -46,6 +56,8 @@
 			navState.activeRoute = 'Paróquias';
 		} else if (path === '/liturgia') {
 			navState.activeRoute = 'Liturgia';
+		} else if (path === '/biblia') {
+			navState.activeRoute = 'Bíblia Sagrada';
 		} else if (path === '/oracoes') {
 			if (tab === 'exame' || tab === 'examination') {
 				navState.activeRoute = 'Exame de Consciência';
@@ -90,8 +102,14 @@
 			isActive: navState.activeRoute === 'Liturgia'
 		},
 		{
+			name: 'Bíblia Sagrada',
+			icon: Book,
+			href: '/biblia',
+			isActive: navState.activeRoute === 'Bíblia Sagrada'
+		},
+		{
 			name: 'Orações e Devoções',
-			icon: Sparkles,
+			icon: Flame,
 			href: '/oracoes?tab=prayers',
 			isActive: navState.activeRoute === 'Orações e Devoções'
 		},
@@ -416,6 +434,43 @@
 						<p class="text-[9px] text-red-400/80 px-4 mt-0.5 leading-relaxed">{geoError}</p>
 					{/if}
 				</div>
+
+				<!-- User Profile Card -->
+				{#if data.user}
+					<div class="mt-auto pt-4 border-t border-border-dark/30 shrink-0">
+						{#if sidebarCollapsed}
+							<button
+								onclick={() => handleComingSoon(`Perfil de ${data.user.name}`)}
+								class="w-full flex items-center justify-center p-1 hover:bg-bg-card/45 rounded-xl transition-all duration-200 cursor-pointer"
+								title="{data.user.name} - Ver perfil"
+							>
+								<img
+									src={data.user.avatar}
+									alt="{data.user.name} Avatar"
+									class="h-9 w-9 rounded-full object-cover border border-border-dark bg-bg-dark"
+								/>
+							</button>
+						{:else}
+							<button
+								onclick={() => handleComingSoon(`Perfil de ${data.user.name}`)}
+								class="w-full flex items-center justify-between p-2 hover:bg-bg-card/45 rounded-xl transition-all duration-200 cursor-pointer group text-left"
+							>
+								<div class="flex items-center gap-3 min-w-0">
+									<img
+										src={data.user.avatar}
+										alt="{data.user.name} Avatar"
+										class="h-9 w-9 rounded-full object-cover border border-border-dark bg-bg-dark shrink-0"
+									/>
+									<div class="flex flex-col min-w-0 select-none">
+										<span class="text-xs font-bold text-text-main truncate">{data.user.name}</span>
+										<span class="text-[10px] text-text-muted mt-0.5 group-hover:text-brand-gold transition-colors">Ver perfil</span>
+									</div>
+								</div>
+								<ChevronRight size={13} class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0" />
+							</button>
+						{/if}
+					</div>
+				{/if}
 			</div>
 		</aside>
 
@@ -595,6 +650,32 @@
 								{/if}
 							</div>
 						</div>
+
+						<!-- Mobile User Profile Card -->
+						{#if data.user}
+							<div class="mt-auto pt-4 border-t border-border-dark/30 shrink-0">
+								<button
+									onclick={() => {
+										handleComingSoon(`Perfil de ${data.user.name}`);
+										showMobileMenu = false;
+									}}
+									class="w-full flex items-center justify-between p-2 hover:bg-bg-card/45 rounded-xl transition-all duration-200 cursor-pointer group text-left"
+								>
+									<div class="flex items-center gap-3 min-w-0">
+										<img
+											src={data.user.avatar}
+											alt="{data.user.name} Avatar"
+											class="h-9 w-9 rounded-full object-cover border border-border-dark bg-bg-dark shrink-0"
+										/>
+										<div class="flex flex-col min-w-0 select-none">
+											<span class="text-xs font-bold text-text-main truncate">{data.user.name}</span>
+											<span class="text-[10px] text-text-muted mt-0.5 group-hover:text-brand-gold transition-colors">Ver perfil</span>
+										</div>
+									</div>
+									<ChevronRight size={13} class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0" />
+								</button>
+							</div>
+						{/if}
 					</aside>
 				</div>
 			{/if}

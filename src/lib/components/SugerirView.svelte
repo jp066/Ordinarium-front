@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Check, Sparkles, Send, ShieldCheck, MapPin } from '@lucide/svelte';
+	import { Check, Send, ShieldCheck } from '@lucide/svelte';
 
 	// Suggestion form logic (mock submission)
 	let suggestName = $state('');
@@ -27,7 +27,7 @@
 			Colaborar com o Ordinarium
 		</h2>
 		<p class="text-sm text-text-muted max-w-xl mx-auto font-sans leading-relaxed">
-			Ajude a manter esta iniciativa católica viva e atualizada.
+			Ajude a manter esta iniciativa católica viva e atualizada com suas sugestões.
 		</p>
 	</div>
 
@@ -40,47 +40,38 @@
 			<div class="space-y-4">
 				<div class="flex items-center gap-2">
 					<span class="text-[10px] uppercase font-bold tracking-widest text-brand-gold font-sans"
-						>Colaboração Geral</span
+						>Pedidos de Inclusão e Ideias</span
 					>
 				</div>
 				<h2 class="text-2xl font-bold text-text-main tracking-tight font-sans">
 					Como Funciona o Envio de Sugestões?
 				</h2>
 				<p class="text-xs text-text-muted leading-relaxed font-sans">
-					Ajudar a manter as informações litúrgicas, cadastros de paróquias, contatos e fotos
-					atualizados é fundamental. Graças à colaboração dos fiéis, o portal permanece completo e
-					confiável.
+					Deseja sugerir a inclusão de orações clássicas, terços específicos, correções cadastrais permanentes ou novas ideias de funcionalidades? Envie-nos uma mensagem diretamente pelo formulário.
 				</p>
 				<p class="text-xs text-text-muted leading-relaxed font-sans">
-					Ao enviar uma sugestão, siga estas recomendações para facilitar a aprovação da nossa
-					equipe:
+					Para relatos rápidos de horários (Missa, Confissão, Adoração, Terço) em tempo real em paróquias, por favor utilize o **botão flutuante de reporte** diretamente na aba **Paróquias**.
 				</p>
 				<ul class="space-y-3 text-xs text-text-muted font-sans pl-1">
 					<li class="flex items-start gap-2.5">
 						<span class="text-brand-gold font-bold shrink-0">✓</span>
 						<div>
-							<strong class="text-text-main block mb-0.5">Identifique a Paróquia</strong>
-							<span>Informe o nome oficial da paróquia/igreja e a respectiva cidade/estado.</span>
+							<strong class="text-text-main block mb-0.5">Identifique o Assunto</strong>
+							<span>Especifique claramente se é um pedido de nova oração, ideias de recursos ou correções permanentes.</span>
 						</div>
 					</li>
 					<li class="flex items-start gap-2.5">
 						<span class="text-brand-gold font-bold shrink-0">✓</span>
 						<div>
-							<strong class="text-text-main block mb-0.5">Seja Específico</strong>
-							<span
-								>Descreva detalhadamente o que deseja alterar ou sugerir (novos horários, redes
-								sociais, fotos, correções cadastrais, etc.).</span
-							>
+							<strong class="text-text-main block mb-0.5">Seja Detalhado</strong>
+							<span>Descreva detalhadamente o que deseja incluir (novos horários permanentes, textos de devoção, etc.).</span>
 						</div>
 					</li>
 					<li class="flex items-start gap-2.5">
 						<span class="text-brand-gold font-bold shrink-0">✓</span>
 						<div>
 							<strong class="text-text-main block mb-0.5">Fontes e Links</strong>
-							<span
-								>Se possível, envie links oficiais, fotos de avisos paroquiais ou outras fontes para
-								podermos validar as alterações com mais rapidez.</span
-							>
+							<span>Se possível, envie links oficiais, fotos de avisos paroquiais ou referências para validar a alteração com curadoria.</span>
 						</div>
 					</li>
 				</ul>
@@ -95,7 +86,7 @@
 				<div class="text-left font-sans">
 					<h4 class="text-xs font-bold text-text-main leading-tight">Validação por Curadores</h4>
 					<p class="text-[10px] text-text-muted">
-						Todas as informações passam por curadoria antes de serem publicadas no portal.
+						Todas as sugestões gerais passam por curadoria antes de serem catalogadas no portal.
 					</p>
 				</div>
 			</div>
@@ -108,17 +99,16 @@
 			<div class="space-y-4">
 				<div class="space-y-1 text-left select-none">
 					<h3 class="text-lg font-bold text-text-main tracking-tight font-sans">
-						Sugerir Alterações
+						Sugerir Inclusões
 					</h3>
 					<p class="text-xs text-text-muted font-sans">
-						Quer sugerir uma paróquia, novos horários, fotos, redes sociais ou correções? Preencha
-						os detalhes abaixo.
+						Proponha novos recursos, orações ou correções de dados históricos para o Ordinarium.
 					</p>
 				</div>
 
 				{#if suggestSubmitted}
 					<div
-						class="flex flex-col items-center justify-center py-12 text-center space-y-3 font-sans animate-fade-in bg-bg-dark/40 rounded-xl border border-brand-gold/15 p-4 mt-4 my-auto"
+						class="flex flex-col items-center justify-center py-12 text-center space-y-3 font-sans animate-fade-in bg-bg-dark/40 rounded-xl border border-brand-gold/15 p-4 mt-4 my-auto select-none"
 					>
 						<div
 							class="h-10 w-10 rounded-full bg-brand-gold-dim border border-brand-gold/25 flex items-center justify-center"
@@ -127,7 +117,7 @@
 						</div>
 						<h4 class="text-sm font-bold text-text-main">Sugestão Enviada!</h4>
 						<p class="text-[11px] text-text-muted leading-relaxed">
-							Obrigado por colaborar. Nossa equipe de curadores irá analisar sua sugestão em breve.
+							Obrigado por colaborar. Nossa equipe de curadores irá analisar seu pedido em breve.
 						</p>
 					</div>
 				{:else}
@@ -140,7 +130,7 @@
 								id="suggestName"
 								type="text"
 								bind:value={suggestName}
-								placeholder="Alteração de horarios, adição de orações etc"
+								placeholder="Ex: Inclusão do Terço das Lágrimas, Nova Funcionalidade..."
 								required
 								class="w-full px-3.5 py-2 text-xs rounded-xl border border-border-dark bg-bg-dark text-text-main placeholder-text-muted focus:border-brand-gold focus:ring-1 focus:ring-brand-gold focus:outline-none transition-colors"
 							/>
@@ -156,7 +146,7 @@
 								id="suggestDetails"
 								rows="7"
 								bind:value={suggestSchedule}
-								placeholder="Descreva em detalhes a sua sugestão."
+								placeholder="Descreva em detalhes a sua sugestão ou o texto completo da oração/recurso."
 								required
 								class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-border-dark bg-bg-dark text-text-main placeholder-text-muted focus:border-brand-gold focus:ring-1 focus:ring-brand-gold focus:outline-none transition-colors resize-none"
 							></textarea>

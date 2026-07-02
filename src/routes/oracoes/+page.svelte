@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import SEO from '$lib/components/SEO.svelte';
 	import {
-		Sparkles,
+		Flame,
 		BookOpen,
 		Search,
 		Check,
@@ -404,7 +404,7 @@
 									<div
 										class="absolute -right-8 -bottom-8 opacity-[0.03] pointer-events-none select-none"
 									>
-										<Sparkles size={180} class="text-brand-gold" />
+										<Flame size={180} class="text-brand-gold" />
 									</div>
 
 									<div class="flex justify-between items-start shrink-0 mb-4 select-none">
@@ -461,7 +461,7 @@
 							<div
 								class="flex-1 flex flex-col items-center justify-center text-center p-8 select-none"
 							>
-								<Sparkles size={24} class="text-text-muted/40 mb-3" />
+								<Flame size={24} class="text-text-muted/40 mb-3" />
 								<span class="text-xs text-text-muted/40"
 									>Selecione uma oração na lista à esquerda.</span
 								>

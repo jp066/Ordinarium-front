@@ -8,6 +8,7 @@
 		MapPin,
 		BookOpen,
 		Sparkles,
+		Flame,
 		CheckSquare,
 		Star,
 		User,
@@ -69,6 +70,8 @@
 		month: 'long',
 		year: 'numeric'
 	});
+
+
 
 	// Parse Liturgia do Dia
 	const liturgiaDoDia = $derived.by(() => {
@@ -382,13 +385,13 @@
 			Explorar
 		</h3>
 
-		<div class="grid grid-cols-2 xl:grid-cols-6 gap-3 sm:gap-4 w-full">
+		<div class="flex sm:grid overflow-x-auto sm:overflow-visible grid-cols-2 xl:grid-cols-6 gap-3 sm:gap-4 w-full scrollbar-none pb-2.5 sm:pb-0 select-none">
 			<!-- Card 1: Horários -->
 			<a
 				href="/horarios"
-				class="col-span-1 flex flex-col justify-between p-4 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[150px] sm:min-h-[170px]"
+				class="col-span-1 flex flex-col justify-between p-3.5 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[85px] sm:min-h-[170px] w-[145px] sm:w-auto shrink-0 sm:shrink"
 			>
-				<div class="flex flex-col gap-2 sm:gap-3">
+				<div class="flex flex-col gap-1 sm:gap-3">
 					<div class="flex items-center gap-2 sm:gap-2.5 select-none">
 						<Clock size={18} class="text-brand-gold shrink-0" />
 						<h4
@@ -397,11 +400,11 @@
 							Horários
 						</h4>
 					</div>
-					<p class="text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
+					<p class="hidden sm:block text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
 						Encontre horários de missas, confissões e adorações em sua região.
 					</p>
 				</div>
-				<div class="flex justify-end mt-2">
+				<div class="hidden sm:flex justify-end mt-2">
 					<ArrowRight
 						size={14}
 						class="text-text-muted group-hover:text-brand-gold transition-colors"
@@ -412,9 +415,9 @@
 			<!-- Card 2: Paróquias -->
 			<a
 				href="/paroquias"
-				class="col-span-1 flex flex-col justify-between p-4 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[150px] sm:min-h-[170px]"
+				class="col-span-1 flex flex-col justify-between p-3.5 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[85px] sm:min-h-[170px] w-[145px] sm:w-auto shrink-0 sm:shrink"
 			>
-				<div class="flex flex-col gap-2 sm:gap-3">
+				<div class="flex flex-col gap-1 sm:gap-3">
 					<div class="flex items-center gap-2 sm:gap-2.5 select-none">
 						<MapPin size={18} class="text-brand-gold shrink-0" />
 						<h4
@@ -423,11 +426,11 @@
 							Paróquias
 						</h4>
 					</div>
-					<p class="text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
+					<p class="hidden sm:block text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
 						Localize paróquias, contatos e mapas integrados.
 					</p>
 				</div>
-				<div class="flex justify-end mt-2">
+				<div class="hidden sm:flex justify-end mt-2">
 					<ArrowRight
 						size={14}
 						class="text-text-muted group-hover:text-brand-gold transition-colors"
@@ -438,9 +441,9 @@
 			<!-- Card 3: Liturgia -->
 			<a
 				href="/liturgia"
-				class="col-span-1 flex flex-col justify-between p-4 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[150px] sm:min-h-[170px]"
+				class="col-span-1 flex flex-col justify-between p-3.5 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[85px] sm:min-h-[170px] w-[145px] sm:w-auto shrink-0 sm:shrink"
 			>
-				<div class="flex flex-col gap-2 sm:gap-3">
+				<div class="flex flex-col gap-1 sm:gap-3">
 					<div class="flex items-center gap-2 sm:gap-2.5 select-none">
 						<BookOpen size={18} class="text-brand-gold shrink-0" />
 						<h4
@@ -449,11 +452,11 @@
 							Liturgia
 						</h4>
 					</div>
-					<p class="text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
+					<p class="hidden sm:block text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
 						Acompanhe a liturgia diária, leituras e celebrações da Santa Missa.
 					</p>
 				</div>
-				<div class="flex justify-end mt-2">
+				<div class="hidden sm:flex justify-end mt-2">
 					<ArrowRight
 						size={14}
 						class="text-text-muted group-hover:text-brand-gold transition-colors"
@@ -464,22 +467,22 @@
 			<!-- Card 4: Orações -->
 			<a
 				href="/oracoes?tab=prayers"
-				class="col-span-1 flex flex-col justify-between p-4 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[150px] sm:min-h-[170px]"
+				class="col-span-1 flex flex-col justify-between p-3.5 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[85px] sm:min-h-[170px] w-[145px] sm:w-auto shrink-0 sm:shrink"
 			>
-				<div class="flex flex-col gap-2 sm:gap-3">
+				<div class="flex flex-col gap-1 sm:gap-3">
 					<div class="flex items-center gap-2 sm:gap-2.5 select-none">
-						<Sparkles size={18} class="text-brand-gold shrink-0" />
+						<Flame size={18} class="text-brand-gold shrink-0" />
 						<h4
 							class="text-[11px] sm:text-xs font-extrabold text-text-main tracking-tight group-hover:text-brand-gold transition-colors"
 						>
 							Orações
 						</h4>
 					</div>
-					<p class="text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
+					<p class="hidden sm:block text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
 						Acesse orações tradicionais, devoções e momentos de espiritualidade.
 					</p>
 				</div>
-				<div class="flex justify-end mt-2">
+				<div class="hidden sm:flex justify-end mt-2">
 					<ArrowRight
 						size={14}
 						class="text-text-muted group-hover:text-brand-gold transition-colors"
@@ -490,9 +493,9 @@
 			<!-- Card 5: Exame de Consciência -->
 			<a
 				href="/oracoes?tab=exame"
-				class="col-span-1 flex flex-col justify-between p-4 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[150px] sm:min-h-[170px]"
+				class="col-span-1 flex flex-col justify-between p-3.5 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer min-h-[85px] sm:min-h-[170px] w-[145px] sm:w-auto shrink-0 sm:shrink"
 			>
-				<div class="flex flex-col gap-2 sm:gap-3">
+				<div class="flex flex-col gap-1 sm:gap-3">
 					<div class="flex items-center gap-2 sm:gap-2.5 select-none">
 						<CheckSquare size={18} class="text-brand-gold shrink-0" />
 						<h4
@@ -501,11 +504,11 @@
 							Exame de Consciência
 						</h4>
 					</div>
-					<p class="text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
+					<p class="hidden sm:block text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
 						Prepare-se para uma boa confissão com o exame de consciência.
 					</p>
 				</div>
-				<div class="flex justify-end mt-2">
+				<div class="hidden sm:flex justify-end mt-2">
 					<ArrowRight
 						size={14}
 						class="text-text-muted group-hover:text-brand-gold transition-colors"
@@ -516,9 +519,9 @@
 			<!-- Card 6: Favoritos -->
 			<button
 				onclick={() => handleComingSoon('Módulo de Favoritos')}
-				class="col-span-1 flex flex-col justify-between p-4 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 text-left cursor-pointer min-h-[150px] sm:min-h-[170px]"
+				class="col-span-1 flex flex-col justify-between p-3.5 sm:p-5 bg-bg-card/45 hover:bg-bg-card/85 border border-border-dark hover:border-brand-gold/35 rounded-2xl group transition-all duration-300 transform hover:-translate-y-0.5 text-left cursor-pointer min-h-[85px] sm:min-h-[170px] w-[145px] sm:w-auto shrink-0 sm:shrink"
 			>
-				<div class="flex flex-col gap-2 sm:gap-3">
+				<div class="flex flex-col gap-1 sm:gap-3">
 					<div class="flex items-center gap-2 sm:gap-2.5 select-none">
 						<Star size={18} class="text-brand-gold shrink-0" />
 						<h4
@@ -527,11 +530,11 @@
 							Favoritos
 						</h4>
 					</div>
-					<p class="text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
+					<p class="hidden sm:block text-[9px] sm:text-[10px] text-text-muted leading-relaxed font-sans">
 						Salve suas paróquias, orações e conteúdos favoritos.
 					</p>
 				</div>
-				<div class="flex justify-end mt-2">
+				<div class="hidden sm:flex justify-end mt-2">
 					<ArrowRight
 						size={14}
 						class="text-text-muted group-hover:text-brand-gold transition-colors"
@@ -539,6 +542,30 @@
 				</div>
 			</button>
 		</div>
+	</div>
+
+	<!-- Collaborative Feature Banner -->
+	<div
+		class="w-full bg-gradient-to-r from-brand-wine/15 via-brand-gold-dim/5 to-brand-wine/20 border border-border-dark rounded-3xl p-5 sm:p-6 text-left flex flex-col sm:flex-row items-center justify-between gap-4 select-none relative overflow-hidden animate-fade-in"
+	>
+		<div class="space-y-1.5 z-10">
+			<h3 class="text-base sm:text-lg font-bold text-text-main tracking-tight font-sans">
+				Falta algum horário de Missa ou Confissão?
+			</h3>
+			<p class="text-xs text-text-muted max-w-2xl leading-relaxed font-sans">
+				Ajude a comunidade! Você pode cadastrar horários diretamente no mapa de paróquias para que outros fiéis fiquem informados.
+			</p>
+		</div>
+		<a
+			href="/paroquias"
+			class="px-4 py-2 text-white text-xs font-bold rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 shrink-0 flex items-center gap-1.5 z-10 cursor-pointer font-sans"
+			style="background-color: #f06e2b; box-shadow: 0 4px 14px rgba(240, 110, 43, 0.45);"
+		>
+			<span>Adicionar Horário</span>
+			<ArrowRight size={13} />
+		</a>
+		<!-- Decorative background shape -->
+		<div class="absolute -right-10 -bottom-10 h-28 w-28 rounded-full bg-[#f06e2b]/5 blur-2xl pointer-events-none"></div>
 	</div>
 
 	<!-- Mapa de Paróquias Section -->
