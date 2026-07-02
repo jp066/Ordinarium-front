@@ -22,7 +22,8 @@
 		Navigation,
 		X,
 		ChevronRight,
-		Menu
+		Menu,
+		Bell
 	} from '@lucide/svelte';
 	import { theme } from '$lib/theme.svelte';
 	import logo from '$lib/assets/logo-removebg.png';
@@ -37,10 +38,11 @@
 		};
 	}>();
 
-	// Share navigation state via context (contains activeRoute and globally shared selectedChurchId)
+	// Share navigation state via context (contains activeRoute, globally shared selectedChurchId, and mobile menu open state)
 	const navState = $state({
 		activeRoute: 'Início',
-		selectedChurchId: 'c1'
+		selectedChurchId: 'c1',
+		showMobileMenu: false
 	});
 	setContext('navigation', navState);
 
@@ -170,9 +172,6 @@
 		theme.init();
 	});
 
-	// Mobile menu open state
-	let showMobileMenu = $state(false);
-
 	// Geolocation state for locating nearest church
 	let geoLoading = $state(false);
 	let geoError = $state<string | null>(null);
@@ -209,7 +208,7 @@
 				}, null as any);
 				navState.selectedChurchId = nearest.church.id;
 				geoLoading = false;
-				showMobileMenu = false;
+				navState.showMobileMenu = false;
 				goto('/paroquias');
 			},
 			(err) => {
@@ -465,10 +464,16 @@
 									/>
 									<div class="flex flex-col min-w-0 select-none">
 										<span class="text-xs font-bold text-text-main truncate">{data.user.name}</span>
-										<span class="text-[10px] text-text-muted mt-0.5 group-hover:text-brand-gold transition-colors">Ver perfil</span>
+										<span
+											class="text-[10px] text-text-muted mt-0.5 group-hover:text-brand-gold transition-colors"
+											>Ver perfil</span
+										>
 									</div>
 								</div>
-								<ChevronRight size={13} class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0" />
+								<ChevronRight
+									size={13}
+									class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0"
+								/>
 							</button>
 						{/if}
 					</div>
@@ -483,29 +488,52 @@
 				class="glass-header flex md:hidden h-16 w-full items-center justify-between px-6 shrink-0 z-40"
 			>
 				<!-- Brand Header -->
-				<a href="/" class="flex items-center gap-3">
-					<img src={logo} alt="Logo" class="h-7 w-7 object-contain" />
-					<h1 class="text-xl font-bold tracking-wide text-brand-gold font-gothic select-none">
-						Ordinarium
-					</h1>
+				<a href="/" class="flex items-center gap-2.5">
+					<img
+						src={logo}
+						alt="Ordinarium"
+						class="h-7 w-7 object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.15)]"
+					/>
+					<span class="text-lg font-bold tracking-wide text-brand-gold font-gothic">Ordinarium</span
+					>
 				</a>
 
-				<!-- Hamburger menu icon -->
-				<button
-					onclick={() => (showMobileMenu = !showMobileMenu)}
-					class="text-brand-gold hover:opacity-80 active:scale-90 active:rotate-12 transition-all duration-200 cursor-pointer p-1"
-					title="Menu"
-				>
-					<Menu size={22} />
-				</button>
+				<div class="flex items-center gap-3">
+					<button
+						onclick={() => handleComingSoon('Notificações')}
+						class="relative p-2 text-text-muted hover:text-brand-gold active:scale-95 transition-all duration-200 cursor-pointer bg-transparent border-none"
+						aria-label="Notificações"
+					>
+						<Bell size={18} class="text-brand-gold" />
+						<span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-wine-text"></span>
+					</button>
+
+					<button
+						onclick={() => (navState.showMobileMenu = !navState.showMobileMenu)}
+						class="p-2 text-brand-gold hover:opacity-80 active:scale-95 transition-all duration-200 cursor-pointer bg-transparent border-none"
+						aria-label="Menu de navegação"
+					>
+						<Menu size={18} />
+					</button>
+
+					{#if data.user}
+						<button
+							onclick={() => handleComingSoon(`Perfil de ${data.user.name}`)}
+							class="h-8 w-8 rounded-full overflow-hidden border border-border-dark active:scale-95 transition-all duration-200 cursor-pointer"
+							aria-label="Perfil do usuário"
+						>
+							<img src={data.user.avatar} alt={data.user.name} class="h-full w-full object-cover" />
+						</button>
+					{/if}
+				</div>
 			</header>
 
 			<!-- Mobile Navigation Drawer Overlay -->
-			{#if showMobileMenu}
+			{#if navState.showMobileMenu}
 				<div class="fixed inset-0 z-[1050] md:hidden flex">
 					<!-- Backdrop -->
 					<button
-						onclick={() => (showMobileMenu = false)}
+						onclick={() => (navState.showMobileMenu = false)}
 						class="absolute inset-0 bg-black/60 backdrop-blur-sm"
 						transition:fade={{ duration: 150 }}
 						aria-label="Fechar menu"
@@ -521,7 +549,7 @@
 							<div class="flex items-center justify-between">
 								<a
 									href="/"
-									onclick={() => (showMobileMenu = false)}
+									onclick={() => (navState.showMobileMenu = false)}
 									class="flex items-center gap-3"
 								>
 									<img src={logo} alt="Logo" class="h-7 w-7 object-contain" />
@@ -530,7 +558,7 @@
 									>
 								</a>
 								<button
-									onclick={() => (showMobileMenu = false)}
+									onclick={() => (navState.showMobileMenu = false)}
 									class="text-text-muted hover:text-text-main active:scale-90 active:rotate-90 transition-all duration-200 cursor-pointer"
 								>
 									<X size={18} />
@@ -547,7 +575,7 @@
 								{#each menuItems as item (item.name)}
 									<a
 										href={item.href}
-										onclick={() => (showMobileMenu = false)}
+										onclick={() => (navState.showMobileMenu = false)}
 										class="flex items-center justify-between rounded-xl px-4 py-2.5 text-xs font-bold transition-all duration-200 border cursor-pointer
 										{item.isActive
 											? 'bg-brand-wine/10 text-brand-gold border-brand-gold/20'
@@ -574,7 +602,7 @@
 									<button
 										onclick={() => {
 											item.onclick();
-											showMobileMenu = false;
+											navState.showMobileMenu = false;
 										}}
 										class="w-full flex items-center justify-between rounded-xl px-4 py-2.5 text-xs font-bold transition-all duration-200 border border-transparent text-text-muted hover:text-text-main hover:bg-bg-card/40 cursor-pointer"
 									>
@@ -602,7 +630,7 @@
 								{#each apoieItems as item (item.name)}
 									<a
 										href={item.href}
-										onclick={() => (showMobileMenu = false)}
+										onclick={() => (navState.showMobileMenu = false)}
 										class="flex items-center justify-between rounded-xl px-4 py-2.5 text-xs font-bold transition-all duration-200 border border-transparent text-text-muted hover:text-text-main hover:bg-bg-card/40 cursor-pointer"
 									>
 										<div class="flex items-center gap-3">
@@ -618,7 +646,7 @@
 								<button
 									onclick={() => {
 										goToNearestChurch();
-										showMobileMenu = false;
+										navState.showMobileMenu = false;
 									}}
 									disabled={geoLoading}
 									class="w-full text-left py-2.5 px-4 rounded-xl text-xs font-bold flex items-center gap-3 transition-all border cursor-pointer
@@ -647,7 +675,7 @@
 								<button
 									onclick={() => {
 										handleComingSoon(`Perfil de ${data.user.name}`);
-										showMobileMenu = false;
+										navState.showMobileMenu = false;
 									}}
 									class="w-full flex items-center justify-between p-2 hover:bg-bg-card/45 rounded-xl transition-all duration-200 cursor-pointer group text-left"
 								>
@@ -658,11 +686,18 @@
 											class="h-9 w-9 rounded-full object-cover border border-border-dark bg-bg-dark shrink-0"
 										/>
 										<div class="flex flex-col min-w-0 select-none">
-											<span class="text-xs font-bold text-text-main truncate">{data.user.name}</span>
-											<span class="text-[10px] text-text-muted mt-0.5 group-hover:text-brand-gold transition-colors">Ver perfil</span>
+											<span class="text-xs font-bold text-text-main truncate">{data.user.name}</span
+											>
+											<span
+												class="text-[10px] text-text-muted mt-0.5 group-hover:text-brand-gold transition-colors"
+												>Ver perfil</span
+											>
 										</div>
 									</div>
-									<ChevronRight size={13} class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0" />
+									<ChevronRight
+										size={13}
+										class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0"
+									/>
 								</button>
 							</div>
 						{/if}

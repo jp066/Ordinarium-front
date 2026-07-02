@@ -124,13 +124,11 @@
 		churches.find((c: Church) => c.id === selectedChurchId) || churches[0]
 	);
 
-	let communityEvents = $derived(
-		reportsStore.getCommunityEventsForChurch(selectedChurch.id)
-	);
+	let communityEvents = $derived(reportsStore.getCommunityEventsForChurch(selectedChurch.id));
 
 	let mergedSchedules = $derived.by(() => {
 		const official = filteredSchedules.map((s: Schedule) => ({ ...s, isCommunity: false }));
-		const community = communityEvents.map(e => ({
+		const community = communityEvents.map((e) => ({
 			id: e.id,
 			type: e.type,
 			weekday: e.weekday,
@@ -147,7 +145,13 @@
 		}));
 
 		const weekdayOrder: Record<string, number> = {
-			'Dom': 0, 'Seg': 1, 'Ter': 2, 'Qua': 3, 'Qui': 4, 'Sex': 5, 'Sáb': 6
+			Dom: 0,
+			Seg: 1,
+			Ter: 2,
+			Qua: 3,
+			Qui: 4,
+			Sex: 5,
+			Sáb: 6
 		};
 
 		return [...official, ...community].sort((a, b) => {
@@ -196,21 +200,31 @@
 
 	function getEventColor(category: string) {
 		switch (category) {
-			case 'Missa': return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
-			case 'Confissão': return 'text-purple-400 bg-purple-500/10 border-purple-500/20';
-			case 'Adoração': return 'text-blue-400 bg-blue-500/10 border-blue-500/20';
-			case 'Terço': return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
-			default: return 'text-teal-400 bg-teal-500/10 border-teal-500/20';
+			case 'Missa':
+				return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
+			case 'Confissão':
+				return 'text-purple-400 bg-purple-500/10 border-purple-500/20';
+			case 'Adoração':
+				return 'text-blue-400 bg-blue-500/10 border-blue-500/20';
+			case 'Terço':
+				return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+			default:
+				return 'text-teal-400 bg-teal-500/10 border-teal-500/20';
 		}
 	}
 
 	function getEventIcon(category: string) {
 		switch (category) {
-			case 'Missa': return Flame;
-			case 'Confissão': return Users;
-			case 'Adoração': return Sparkles;
-			case 'Terço': return Heart;
-			default: return AlertCircle;
+			case 'Missa':
+				return Flame;
+			case 'Confissão':
+				return Users;
+			case 'Adoração':
+				return Sparkles;
+			case 'Terço':
+				return Heart;
+			default:
+				return AlertCircle;
 		}
 	}
 
@@ -219,8 +233,6 @@
 		if (total === 0) return 100;
 		return Math.round((event.upvotes / total) * 100);
 	}
-
-
 
 	// Leaflet map bindings
 	let map = $state<any>(null);
@@ -422,38 +434,59 @@
 										<span class="font-bold text-text-main font-mono text-sm">{item.timeStr}</span>
 										<span class="text-[10px] text-text-muted">({item.weekday})</span>
 									</div>
-									<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20">
-										<span class="text-brand-gold font-bold text-[8px] uppercase tracking-wider">Colaborativo</span>
+									<div
+										class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20"
+									>
+										<span class="text-brand-gold font-bold text-[8px] uppercase tracking-wider"
+											>Colaborativo</span
+										>
 									</div>
 								</div>
-								
+
 								<!-- Details and Icon -->
 								<div class="flex items-start justify-between gap-3">
 									<div class="text-left">
-										<span class="text-[10px] text-text-muted font-bold uppercase tracking-wider block">{item.type}</span>
+										<span
+											class="text-[10px] text-text-muted font-bold uppercase tracking-wider block"
+											>{item.type}</span
+										>
 										{#if item.notes}
-											<p class="text-[10px] text-text-muted leading-relaxed font-sans mt-0.5">{item.notes}</p>
+											<p class="text-[10px] text-text-muted leading-relaxed font-sans mt-0.5">
+												{item.notes}
+											</p>
 										{/if}
 									</div>
-									<div class="h-6 w-6 rounded-lg flex items-center justify-center {colorClasses} border shrink-0">
+									<div
+										class="h-6 w-6 rounded-lg flex items-center justify-center {colorClasses} border shrink-0"
+									>
 										<Icon size={12} />
 									</div>
 								</div>
 
 								<!-- Vote widget -->
-								<div class="flex items-center justify-between text-[9px] text-text-muted border-t border-border-dark/30 pt-2 mt-0.5 select-none">
-									<span>Confiança: <b class="text-brand-gold">{getConfidencePercent(item)}%</b></span>
+								<div
+									class="flex items-center justify-between text-[9px] text-text-muted border-t border-border-dark/30 pt-2 mt-0.5 select-none"
+								>
+									<span
+										>Confiança: <b class="text-brand-gold">{getConfidencePercent(item)}%</b></span
+									>
 									<div class="flex gap-1.5">
 										<button
 											onclick={() => handleEventVote(item.id, 'down')}
-											class="px-1.5 py-0.5 rounded border border-border-dark bg-bg-card hover:text-text-main {item.userAction === 'down' ? 'text-brand-wine border-brand-wine/40' : ''} cursor-pointer text-[8px] font-bold"
+											class="px-1.5 py-0.5 rounded border border-border-dark bg-bg-card hover:text-text-main {item.userAction ===
+											'down'
+												? 'text-brand-wine border-brand-wine/40'
+												: ''} cursor-pointer text-[8px] font-bold"
 											title="Este horário não ocorre mais"
 										>
 											Não ({item.downvotes})
 										</button>
 										<button
 											onclick={() => handleEventVote(item.id, 'up')}
-											class="px-1.5 py-0.5 rounded border border-border-dark bg-bg-card hover:text-text-main {item.userAction === 'up' ? 'text-brand-gold border-brand-gold/40' : ''} cursor-pointer text-[8px] font-bold"
+											class="px-1.5 py-0.5 rounded border border-border-dark bg-bg-card hover:text-text-main {item.userAction ===
+											'up'
+												? 'text-brand-gold border-brand-gold/40'
+												: ''} cursor-pointer text-[8px] font-bold"
 											title="Confirmar que este horário ocorre"
 										>
 											Sim ({item.upvotes})
@@ -633,7 +666,10 @@
 			style="background-color: #f06e2b; z-index: 9999; box-shadow: 0 4px 20px rgba(240, 110, 43, 0.45);"
 			title="Adicionar Horário/Evento (Colaborativo)"
 		>
-			<div class="absolute inset-0 rounded-full animate-ping group-hover:animate-none" style="background-color: rgba(240, 110, 43, 0.35);"></div>
+			<div
+				class="absolute inset-0 rounded-full animate-ping group-hover:animate-none"
+				style="background-color: rgba(240, 110, 43, 0.35);"
+			></div>
 			<Plus size={20} strokeWidth={2.8} />
 		</button>
 	</section>
@@ -664,7 +700,9 @@
 					<div
 						class="flex flex-col items-center justify-center py-10 text-center space-y-3 animate-fade-in"
 					>
-						<div class="h-10 w-10 rounded-full bg-brand-gold-dim border border-brand-gold/25 flex items-center justify-center">
+						<div
+							class="h-10 w-10 rounded-full bg-brand-gold-dim border border-brand-gold/25 flex items-center justify-center"
+						>
 							<Check class="h-5 w-5 text-brand-gold" />
 						</div>
 						<h4 class="text-sm font-bold text-text-main">Horário Adicionado!</h4>
@@ -675,7 +713,9 @@
 				{:else}
 					<form onsubmit={handleAddCommunityEvent} class="space-y-4">
 						<div class="space-y-1">
-							<h3 class="text-base font-bold text-text-main tracking-tight flex items-center gap-1.5 select-none">
+							<h3
+								class="text-base font-bold text-text-main tracking-tight flex items-center gap-1.5 select-none"
+							>
 								<Plus size={16} class="text-[#f06e2b]" />
 								<span>Adicionar Horário Colaborativo</span>
 							</h3>
@@ -686,7 +726,9 @@
 
 						<!-- Step 1: Select Event Type -->
 						<div class="space-y-1.5 select-none">
-							<span class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">Tipo de Evento</span>
+							<span class="text-[11px] font-bold text-text-muted uppercase tracking-wider block"
+								>Tipo de Evento</span
+							>
 							<div class="grid grid-cols-4 gap-1.5">
 								{#each ['Missa', 'Confissão', 'Adoração', 'Terço'] as type}
 									{@const CatIcon = getEventIcon(type)}
@@ -708,7 +750,10 @@
 						<!-- Step 2: Weekday and Time -->
 						<div class="flex gap-4">
 							<div class="flex-1 space-y-1.5">
-								<label for="eventWeekday" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">
+								<label
+									for="eventWeekday"
+									class="text-[11px] font-bold text-text-muted uppercase tracking-wider block"
+								>
 									Dia da Semana
 								</label>
 								<select
@@ -718,13 +763,18 @@
 									class="w-full px-3 py-2 text-xs rounded-xl border border-border-dark bg-bg-dark text-text-main focus:border-brand-gold focus:outline-none transition-colors"
 								>
 									{#each ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'] as day}
-										<option value={day}>{day === 'Dom' ? 'Domingo' : day === 'Sáb' ? 'Sábado' : day}</option>
+										<option value={day}
+											>{day === 'Dom' ? 'Domingo' : day === 'Sáb' ? 'Sábado' : day}</option
+										>
 									{/each}
 								</select>
 							</div>
 
 							<div class="w-32 space-y-1.5">
-								<label for="eventTime" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">
+								<label
+									for="eventTime"
+									class="text-[11px] font-bold text-text-muted uppercase tracking-wider block"
+								>
 									Horário
 								</label>
 								<input
@@ -739,7 +789,10 @@
 
 						<!-- Step 3: Notes -->
 						<div class="space-y-1.5">
-							<label for="eventNotes" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">
+							<label
+								for="eventNotes"
+								class="text-[11px] font-bold text-text-muted uppercase tracking-wider block"
+							>
 								Observações (opcional)
 							</label>
 							<textarea

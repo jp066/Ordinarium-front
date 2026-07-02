@@ -57,7 +57,8 @@ export const load: PageServerLoad = async ({ url, fetch }) => {
 		console.error('Erro ao conectar com a API de Bíblia:', err);
 		return {
 			success: false,
-			error: 'Não foi possível conectar com o servidor da Bíblia. Verifique se o backend está rodando.'
+			error:
+				'Não foi possível conectar com o servidor da Bíblia. Verifique se o backend está rodando.'
 		};
 	}
 };

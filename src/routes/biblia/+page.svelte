@@ -121,7 +121,7 @@
 		const versesText = data.currentChapter.verses
 			.map((v: Verse) => `[${v.number}] ${v.text}`)
 			.join('\n');
-		
+
 		navigator.clipboard.writeText(title + versesText).then(() => {
 			copiedIndicator = true;
 			setTimeout(() => {
@@ -169,19 +169,30 @@
 {#if !data.success}
 	<!-- Error State -->
 	<div class="w-full h-[calc(100dvh-4rem)] flex items-center justify-center p-6">
-		<div class="flex flex-col items-center justify-center text-center p-8 max-w-md bg-bg-card border border-border-dark shadow-2xl rounded-2xl animate-fade-in">
-			<div class="h-12 w-12 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/25 mb-4">
+		<div
+			class="flex flex-col items-center justify-center text-center p-8 max-w-md bg-bg-card border border-border-dark shadow-2xl rounded-2xl animate-fade-in"
+		>
+			<div
+				class="h-12 w-12 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/25 mb-4"
+			>
 				<Compass class="h-6 w-6 text-red-400" />
 			</div>
 			<h3 class="text-lg font-bold text-text-main">Falha ao conectar com a Bíblia</h3>
 			<p class="text-xs text-text-muted mt-2 leading-relaxed">
-				{data.error || 'Ocorreu um erro ao carregar os dados bíblicos. Certifique-se de que o backend está ativo.'}
+				{data.error ||
+					'Ocorreu um erro ao carregar os dados bíblicos. Certifique-se de que o backend está ativo.'}
 			</p>
 			<div class="flex gap-3 mt-6">
-				<a href="/biblia" class="px-4 py-2 rounded-xl bg-brand-wine hover:bg-brand-wine/90 border border-brand-wine/30 text-xs font-bold text-white transition-all cursor-pointer">
+				<a
+					href="/biblia"
+					class="px-4 py-2 rounded-xl bg-brand-wine hover:bg-brand-wine/90 border border-brand-wine/30 text-xs font-bold text-white transition-all cursor-pointer"
+				>
 					Tentar novamente
 				</a>
-				<a href="/" class="px-4 py-2 rounded-xl bg-bg-dark hover:bg-bg-dark/80 border border-border-dark text-xs font-bold text-text-muted hover:text-text-main transition-all cursor-pointer">
+				<a
+					href="/"
+					class="px-4 py-2 rounded-xl bg-bg-dark hover:bg-bg-dark/80 border border-border-dark text-xs font-bold text-text-muted hover:text-text-main transition-all cursor-pointer"
+				>
 					Ir ao Início
 				</a>
 			</div>
@@ -189,11 +200,13 @@
 	</div>
 {:else}
 	<!-- Main Layout Container -->
-	<div class="w-full h-[calc(100dvh-4rem)] overflow-hidden flex flex-col min-h-0 lg:flex-row max-w-7xl mx-auto font-sans text-text-main bg-transparent transition-colors duration-200">
-		
+	<div
+		class="w-full h-[calc(100dvh-4rem)] overflow-hidden flex flex-col min-h-0 lg:flex-row max-w-7xl mx-auto font-sans text-text-main bg-transparent transition-colors duration-200"
+	>
 		<!-- Desktop Left Sidebar (Glassmorphism layout) -->
-		<aside class="hidden lg:flex flex-col w-80 shrink-0 border-r border-border-dark/40 bg-bg-sidebar/20 p-5 gap-5 h-full overflow-hidden select-none">
-
+		<aside
+			class="hidden lg:flex flex-col w-80 shrink-0 border-r border-border-dark/40 bg-bg-sidebar/20 p-5 gap-5 h-full overflow-hidden select-none"
+		>
 			<!-- Tab buttons for Antigo/Novo Testamento -->
 			<div class="flex p-1 border border-border-dark bg-bg-dark/50 rounded-xl relative">
 				<button
@@ -227,21 +240,35 @@
 							: 'bg-transparent border-transparent text-text-muted hover:text-text-main hover:bg-bg-card/30'}"
 					>
 						<div class="flex items-start gap-2.5 min-w-0 flex-1">
-							<Book size={12} class="transition-transform group-hover:scale-110 shrink-0 mt-0.5 {data.currentBook === book.abbrev && !data.searchParam ? 'text-brand-gold' : 'text-text-muted/40'}" />
-							<span class="break-words whitespace-normal text-text-main/90 group-hover:text-text-main leading-snug">{book.name}</span>
+							<Book
+								size={12}
+								class="transition-transform group-hover:scale-110 shrink-0 mt-0.5 {data.currentBook ===
+									book.abbrev && !data.searchParam
+									? 'text-brand-gold'
+									: 'text-text-muted/40'}"
+							/>
+							<span
+								class="break-words whitespace-normal text-text-main/90 group-hover:text-text-main leading-snug"
+								>{book.name}</span
+							>
 						</div>
-						<span class="text-[9px] font-mono px-2 py-0.5 rounded bg-bg-dark/40 border border-border-dark group-hover:border-border-dark/80 transition-colors shrink-0 mt-0.5">{book.chapters_count} cap.</span>
+						<span
+							class="text-[9px] font-mono px-2 py-0.5 rounded bg-bg-dark/40 border border-border-dark group-hover:border-border-dark/80 transition-colors shrink-0 mt-0.5"
+							>{book.chapters_count} cap.</span
+						>
 					</button>
 				{/each}
 			</div>
 		</aside>
 
 		<!-- Right Side / Main Area -->
-		<div class="flex-1 flex flex-col min-w-0 min-h-0 h-full relative overflow-hidden bg-transparent">
-			
+		<div
+			class="flex-1 flex flex-col min-w-0 min-h-0 h-full relative overflow-hidden bg-transparent"
+		>
 			<!-- Sticky Top Bar (Glow controls, premium layout) -->
-			<header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 lg:p-5 select-none border-b border-border-dark/40 shrink-0 bg-bg-card/20 backdrop-blur-md relative z-30">
-				
+			<header
+				class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 lg:p-5 select-none border-b border-border-dark/40 shrink-0 bg-bg-card/20 backdrop-blur-md relative z-30"
+			>
 				<div class="flex flex-wrap items-center gap-3">
 					{#if data.searchParam}
 						<!-- Search Back Button -->
@@ -264,7 +291,9 @@
 
 						<!-- Book Display Name (Desktop) -->
 						<div class="hidden lg:flex flex-col">
-							<span class="text-[9px] uppercase font-bold tracking-widest text-brand-gold">Livro</span>
+							<span class="text-[9px] uppercase font-bold tracking-widest text-brand-gold"
+								>Livro</span
+							>
 							<h1 class="text-sm font-bold text-text-main">
 								{data.selectedBookInfo?.name}
 							</h1>
@@ -273,7 +302,7 @@
 						<!-- Custom Chapter Selector Dropdown Grid -->
 						{#if data.selectedBookInfo && data.currentChapterNum}
 							<div class="h-8 w-[1px] bg-border-dark/40 hidden sm:block"></div>
-							
+
 							<div class="flex items-center gap-2 relative">
 								<!-- Previous Chapter Button -->
 								{#if data.currentChapterNum > 1}
@@ -288,21 +317,42 @@
 
 								<!-- Styled Custom Select Dropdown Toggle -->
 								<div class="flex flex-col">
-									<span class="text-[9px] uppercase font-bold tracking-widest text-brand-gold lg:block hidden">Capítulo</span>
+									<span
+										class="text-[9px] uppercase font-bold tracking-widest text-brand-gold lg:block hidden"
+										>Capítulo</span
+									>
 									<button
 										onclick={() => (chapterDropdownOpen = !chapterDropdownOpen)}
 										class="text-xs font-bold bg-bg-dark/80 border border-border-dark hover:border-brand-gold/30 rounded-xl px-3.5 py-1.5 lg:py-1 flex items-center gap-2 cursor-pointer transition-colors shadow-sm text-text-main"
 									>
 										<span>Capítulo {data.currentChapterNum}</span>
-										<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-brand-gold transition-transform {chapterDropdownOpen ? 'rotate-180' : ''}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											class="h-3 w-3 text-brand-gold transition-transform {chapterDropdownOpen
+												? 'rotate-180'
+												: ''}"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2.5"
+												d="M19 9l-7 7-7-7"
+											/>
 										</svg>
 									</button>
 
 									<!-- Custom Chapter Grid Overlay Popover -->
 									{#if chapterDropdownOpen}
-										<div class="absolute top-12 left-0 mt-1 bg-bg-sidebar border border-border-dark rounded-2xl p-4 shadow-2xl w-64 max-h-72 overflow-y-auto animate-fade-in z-50">
-											<span class="text-[9px] uppercase font-bold tracking-wider text-text-muted/60 block mb-3 border-b border-border-dark/60 pb-1.5">Escolher Capítulo</span>
+										<div
+											class="absolute top-12 left-0 mt-1 bg-bg-sidebar border border-border-dark rounded-2xl p-4 shadow-2xl w-64 max-h-72 overflow-y-auto animate-fade-in z-50"
+										>
+											<span
+												class="text-[9px] uppercase font-bold tracking-wider text-text-muted/60 block mb-3 border-b border-border-dark/60 pb-1.5"
+												>Escolher Capítulo</span
+											>
 											<div class="grid grid-cols-5 gap-2">
 												{#each Array(data.selectedBookInfo.chapters_count) as _, i}
 													<button
@@ -336,11 +386,13 @@
 				</div>
 
 				<!-- Accessibility Controls & Mode Toggles -->
-				<div class="flex items-center justify-between sm:justify-end gap-3 select-none w-full sm:w-auto">
-
-
+				<div
+					class="flex items-center justify-between sm:justify-end gap-3 select-none w-full sm:w-auto"
+				>
 					<!-- Font Size Selectors -->
-					<div class="flex items-center gap-1 border border-border-dark bg-bg-dark p-1 rounded-xl shadow-sm">
+					<div
+						class="flex items-center gap-1 border border-border-dark bg-bg-dark p-1 rounded-xl shadow-sm"
+					>
 						<button
 							onclick={() => (readerFontSize = 'text-xs md:text-sm')}
 							class="text-[10px] px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer
@@ -391,20 +443,28 @@
 								<span>Resultados para:</span>
 								<span class="text-brand-gold italic font-serif">"{data.searchParam}"</span>
 							</h2>
-							<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-bg-dark border border-border-dark text-text-muted">
+							<span
+								class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-bg-dark border border-border-dark text-text-muted"
+							>
 								{data.searchResults?.length || 0} ocorrências
 							</span>
 						</div>
 
 						{#if !data.searchResults || data.searchResults.length === 0}
 							<!-- No search results -->
-							<div class="flex flex-col items-center justify-center text-center p-12 bg-bg-card border border-border-dark/60 rounded-2xl mt-6">
+							<div
+								class="flex flex-col items-center justify-center text-center p-12 bg-bg-card border border-border-dark/60 rounded-2xl mt-6"
+							>
 								<Compass class="h-8 w-8 text-text-muted/45 mb-3" />
 								<h3 class="text-sm font-bold text-text-main">Nenhum resultado encontrado</h3>
 								<p class="text-xs text-text-muted mt-1 max-w-sm">
-									Não encontramos ocorrências para "{data.searchParam}" na tradução do Pe. Matos Soares. Tente usar termos mais simples.
+									Não encontramos ocorrências para "{data.searchParam}" na tradução do Pe. Matos
+									Soares. Tente usar termos mais simples.
 								</p>
-								<button onclick={clearSearch} class="mt-4 px-4 py-2 rounded-xl bg-brand-wine hover:bg-brand-wine/90 border border-brand-wine/30 text-xs font-bold text-white cursor-pointer">
+								<button
+									onclick={clearSearch}
+									class="mt-4 px-4 py-2 rounded-xl bg-brand-wine hover:bg-brand-wine/90 border border-brand-wine/30 text-xs font-bold text-white cursor-pointer"
+								>
 									Voltar à Leitura
 								</button>
 							</div>
@@ -417,15 +477,22 @@
 										class="block border border-border-dark/60 hover:border-brand-gold/30 bg-bg-card/30 hover:bg-bg-card/80 p-4 rounded-xl transition-all cursor-pointer text-left shadow-sm group hover:scale-[1.005]"
 									>
 										<div class="flex items-center justify-between mb-2">
-											<span class="text-[10px] font-extrabold text-brand-gold uppercase tracking-wider flex items-center gap-1.5">
+											<span
+												class="text-[10px] font-extrabold text-brand-gold uppercase tracking-wider flex items-center gap-1.5"
+											>
 												<Sparkles size={10} class="text-brand-gold/60" />
-												{res.book} {res.chapter}:{res.verse}
+												{res.book}
+												{res.chapter}:{res.verse}
 											</span>
-											<span class="text-[9px] px-2 py-0.5 border border-border-dark bg-bg-dark text-text-muted group-hover:text-brand-gold group-hover:border-brand-gold/35 rounded transition-all font-mono uppercase tracking-tight">
+											<span
+												class="text-[9px] px-2 py-0.5 border border-border-dark bg-bg-dark text-text-muted group-hover:text-brand-gold group-hover:border-brand-gold/35 rounded transition-all font-mono uppercase tracking-tight"
+											>
 												Visualizar
 											</span>
 										</div>
-										<p class="text-xs md:text-sm font-serif leading-relaxed text-text-main/90 italic">
+										<p
+											class="text-xs md:text-sm font-serif leading-relaxed text-text-main/90 italic"
+										>
 											"{res.text}"
 										</p>
 									</a>
@@ -436,14 +503,16 @@
 				{:else if data.currentChapter}
 					<!-- Chapter Text Reader -->
 					<article class="max-w-2xl mx-auto space-y-8 animate-fade-in relative">
-						
 						<!-- Scripture Header Layout (Gothic aesthetic) -->
-						<div class="text-center select-none space-y-3.5 border-b border-border-dark/30 pb-6 relative">
-							
-							<h2 class="text-4xl font-normal font-gothic text-brand-gold select-all drop-shadow-[0_2px_4px_rgba(201,168,76,0.15)] leading-tight">
+						<div
+							class="text-center select-none space-y-3.5 border-b border-border-dark/30 pb-6 relative"
+						>
+							<h2
+								class="text-4xl font-normal font-gothic text-brand-gold select-all drop-shadow-[0_2px_4px_rgba(201,168,76,0.15)] leading-tight"
+							>
 								{data.selectedBookInfo?.name}
 							</h2>
-							
+
 							<!-- Gold Accent Ornaments -->
 							<div class="flex items-center justify-center gap-3">
 								<div class="h-[1px] w-14 bg-gradient-to-r from-transparent to-brand-gold/40"></div>
@@ -455,7 +524,7 @@
 								<span class="text-xs font-bold tracking-widest text-text-muted font-sans uppercase">
 									Capítulo {data.currentChapter.chapter}
 								</span>
-								
+
 								<!-- Action buttons for current chapter -->
 								<button
 									onclick={copyChapterText}
@@ -474,10 +543,17 @@
 						</div>
 
 						<!-- Text Verses (Estilo Versículo por Versículo Limpo) -->
-						<div class="{readerFontSize} font-serif leading-relaxed text-justify space-y-1 text-text-main/95 select-all pr-1">
+						<div
+							class="{readerFontSize} font-serif leading-relaxed text-justify space-y-1 text-text-main/95 select-all pr-1"
+						>
 							{#each data.currentChapter.verses as verse}
-								<div class="flex items-start gap-3.5 py-0.5 px-2 rounded-xl border border-transparent hover:bg-bg-card/15 hover:border-border-dark/30 transition-all select-all group">
-									<span class="font-mono text-xs font-bold text-brand-gold select-none shrink-0 w-6 pt-0.5 text-right opacity-80" title="Versículo {verse.number}">
+								<div
+									class="flex items-start gap-3.5 py-0.5 px-2 rounded-xl border border-transparent hover:bg-bg-card/15 hover:border-border-dark/30 transition-all select-all group"
+								>
+									<span
+										class="font-mono text-xs font-bold text-brand-gold select-none shrink-0 w-6 pt-0.5 text-right opacity-80"
+										title="Versículo {verse.number}"
+									>
 										{verse.number}
 									</span>
 									<p class="text-text-main/90 leading-relaxed select-all flex-1">{verse.text}</p>
@@ -485,7 +561,9 @@
 							{/each}
 						</div>
 
-						<div class="h-[1px] bg-gradient-to-r from-transparent via-border-dark/30 to-transparent pt-6"></div>
+						<div
+							class="h-[1px] bg-gradient-to-r from-transparent via-border-dark/30 to-transparent pt-6"
+						></div>
 
 						<!-- Footer navigation inside the reader -->
 						<div class="flex items-center justify-between select-none pt-4 pb-12">
@@ -514,15 +592,23 @@
 					</article>
 				{:else}
 					<!-- Chapter loading / not found -->
-					<div class="flex-1 flex flex-col items-center justify-center text-center p-12 max-w-sm mx-auto my-12 bg-bg-card border border-border-dark shadow-2xl rounded-2xl shrink-0">
-						<div class="h-12 w-12 rounded-full bg-brand-gold-dim flex items-center justify-center border border-brand-gold/20 mb-4">
+					<div
+						class="flex-1 flex flex-col items-center justify-center text-center p-12 max-w-sm mx-auto my-12 bg-bg-card border border-border-dark shadow-2xl rounded-2xl shrink-0"
+					>
+						<div
+							class="h-12 w-12 rounded-full bg-brand-gold-dim flex items-center justify-center border border-brand-gold/20 mb-4"
+						>
 							<BookOpen class="h-6 w-6 text-brand-gold" />
 						</div>
 						<h3 class="text-lg font-bold text-text-main">Capítulo não carregado</h3>
 						<p class="text-xs text-text-muted mt-2 leading-relaxed">
-							Não foi possível carregar as informações deste capítulo ou o livro selecionado não existe na base de dados.
+							Não foi possível carregar as informações deste capítulo ou o livro selecionado não
+							existe na base de dados.
 						</p>
-						<a href="/biblia" class="mt-6 px-4 py-2 rounded-xl bg-brand-wine hover:bg-brand-wine/90 border border-brand-wine/30 text-xs font-bold text-white cursor-pointer">
+						<a
+							href="/biblia"
+							class="mt-6 px-4 py-2 rounded-xl bg-brand-wine hover:bg-brand-wine/90 border border-brand-wine/30 text-xs font-bold text-white cursor-pointer"
+						>
 							Voltar ao Início
 						</a>
 					</div>
@@ -542,12 +628,16 @@
 			></button>
 
 			<!-- Selector panel sheet -->
-			<aside class="relative flex flex-col w-80 bg-bg-sidebar border-r border-border-dark h-full p-5 justify-start gap-4 z-10 animate-fade-in shadow-2xl">
+			<aside
+				class="relative flex flex-col w-80 bg-bg-sidebar border-r border-border-dark h-full p-5 justify-start gap-4 z-10 animate-fade-in shadow-2xl"
+			>
 				<!-- Header -->
 				<div class="flex items-center justify-between">
 					<div class="flex items-center gap-2">
 						<Book size={14} class="text-brand-gold" />
-						<span class="text-xs font-extrabold uppercase tracking-wider text-brand-gold">Navegação e Busca</span>
+						<span class="text-xs font-extrabold uppercase tracking-wider text-brand-gold"
+							>Navegação e Busca</span
+						>
 					</div>
 					<button
 						onclick={() => (mobileSelectorOpen = false)}
@@ -558,7 +648,9 @@
 				</div>
 
 				<!-- Divider -->
-				<div class="h-[1px] bg-gradient-to-r from-transparent via-border-dark/40 to-transparent"></div>
+				<div
+					class="h-[1px] bg-gradient-to-r from-transparent via-border-dark/40 to-transparent"
+				></div>
 
 				<!-- Tabs for mobile selection -->
 				<div class="flex p-1 border border-border-dark bg-bg-dark/50 rounded-xl relative shrink-0">
@@ -582,7 +674,9 @@
 					</button>
 				</div>
 
-				<div class="h-[1px] bg-gradient-to-r from-transparent via-border-dark/40 to-transparent"></div>
+				<div
+					class="h-[1px] bg-gradient-to-r from-transparent via-border-dark/40 to-transparent"
+				></div>
 
 				<!-- Books lists (Mobile scroll) -->
 				<div class="flex-1 overflow-y-auto space-y-1.5 pr-1 scrollbar-none">
@@ -595,10 +689,22 @@
 								: 'bg-transparent border-transparent text-text-muted hover:text-text-main hover:bg-bg-card/40'}"
 						>
 							<div class="flex items-start gap-2.5 min-w-0 flex-1">
-								<Book size={12} class="transition-transform group-hover:scale-110 shrink-0 mt-0.5 {data.currentBook === book.abbrev && !data.searchParam ? 'text-brand-gold' : 'text-text-muted/40'}" />
-								<span class="break-words whitespace-normal text-text-main/90 group-hover:text-text-main leading-snug">{book.name}</span>
+								<Book
+									size={12}
+									class="transition-transform group-hover:scale-110 shrink-0 mt-0.5 {data.currentBook ===
+										book.abbrev && !data.searchParam
+										? 'text-brand-gold'
+										: 'text-text-muted/40'}"
+								/>
+								<span
+									class="break-words whitespace-normal text-text-main/90 group-hover:text-text-main leading-snug"
+									>{book.name}</span
+								>
 							</div>
-							<span class="text-[9px] font-mono px-2 py-0.5 rounded bg-bg-dark/40 border border-border-dark shrink-0 mt-0.5">{book.chapters_count} cap.</span>
+							<span
+								class="text-[9px] font-mono px-2 py-0.5 rounded bg-bg-dark/40 border border-border-dark shrink-0 mt-0.5"
+								>{book.chapters_count} cap.</span
+							>
 						</button>
 					{/each}
 				</div>

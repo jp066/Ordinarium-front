@@ -47,31 +47,44 @@
 					Como Funciona o Envio de Sugestões?
 				</h2>
 				<p class="text-xs text-text-muted leading-relaxed font-sans">
-					Deseja sugerir a inclusão de orações clássicas, terços específicos, correções cadastrais permanentes ou novas ideias de funcionalidades? Envie-nos uma mensagem diretamente pelo formulário.
+					Deseja sugerir a inclusão de orações clássicas, terços específicos, correções cadastrais
+					permanentes ou novas ideias de funcionalidades? Envie-nos uma mensagem diretamente pelo
+					formulário.
 				</p>
 				<p class="text-xs text-text-muted leading-relaxed font-sans">
-					Para relatos rápidos de horários (Missa, Confissão, Adoração, Terço) em tempo real em paróquias, por favor utilize o **botão flutuante de reporte** diretamente na aba **Paróquias**.
+					Para relatos rápidos de horários (Missa, Confissão, Adoração, Terço) em tempo real em
+					paróquias, por favor utilize o **botão flutuante de reporte** diretamente na aba
+					**Paróquias**.
 				</p>
 				<ul class="space-y-3 text-xs text-text-muted font-sans pl-1">
 					<li class="flex items-start gap-2.5">
 						<span class="text-brand-gold font-bold shrink-0">✓</span>
 						<div>
 							<strong class="text-text-main block mb-0.5">Identifique o Assunto</strong>
-							<span>Especifique claramente se é um pedido de nova oração, ideias de recursos ou correções permanentes.</span>
+							<span
+								>Especifique claramente se é um pedido de nova oração, ideias de recursos ou
+								correções permanentes.</span
+							>
 						</div>
 					</li>
 					<li class="flex items-start gap-2.5">
 						<span class="text-brand-gold font-bold shrink-0">✓</span>
 						<div>
 							<strong class="text-text-main block mb-0.5">Seja Detalhado</strong>
-							<span>Descreva detalhadamente o que deseja incluir (novos horários permanentes, textos de devoção, etc.).</span>
+							<span
+								>Descreva detalhadamente o que deseja incluir (novos horários permanentes, textos de
+								devoção, etc.).</span
+							>
 						</div>
 					</li>
 					<li class="flex items-start gap-2.5">
 						<span class="text-brand-gold font-bold shrink-0">✓</span>
 						<div>
 							<strong class="text-text-main block mb-0.5">Fontes e Links</strong>
-							<span>Se possível, envie links oficiais, fotos de avisos paroquiais ou referências para validar a alteração com curadoria.</span>
+							<span
+								>Se possível, envie links oficiais, fotos de avisos paroquiais ou referências para
+								validar a alteração com curadoria.</span
+							>
 						</div>
 					</li>
 				</ul>

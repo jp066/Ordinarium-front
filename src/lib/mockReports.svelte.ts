@@ -65,11 +65,11 @@ class CommunityEventsStore {
 
 	get events() {
 		// Active events (exclude those with massive downvotes)
-		return this._events.filter(e => e.downvotes - e.upvotes < 3);
+		return this._events.filter((e) => e.downvotes - e.upvotes < 3);
 	}
 
 	getCommunityEventsForChurch(churchId: string) {
-		return this._events.filter(e => e.churchId === churchId && e.downvotes - e.upvotes < 3);
+		return this._events.filter((e) => e.churchId === churchId && e.downvotes - e.upvotes < 3);
 	}
 
 	addCommunityEvent(eventData: {
@@ -99,7 +99,7 @@ class CommunityEventsStore {
 	}
 
 	voteCommunityEvent(eventId: string, actionType: 'up' | 'down') {
-		this._events = this._events.map(e => {
+		this._events = this._events.map((e) => {
 			if (e.id !== eventId) return e;
 
 			let upDelta = 0;
@@ -109,7 +109,12 @@ class CommunityEventsStore {
 				// Undo vote
 				if (actionType === 'up') upDelta = -1;
 				if (actionType === 'down') downDelta = -1;
-				return { ...e, upvotes: e.upvotes + upDelta, downvotes: e.downvotes + downDelta, userAction: null };
+				return {
+					...e,
+					upvotes: e.upvotes + upDelta,
+					downvotes: e.downvotes + downDelta,
+					userAction: null
+				};
 			} else {
 				// Change or new vote
 				if (e.userAction === 'up') upDelta = -1;
@@ -118,7 +123,12 @@ class CommunityEventsStore {
 				if (actionType === 'up') upDelta += 1;
 				if (actionType === 'down') downDelta += 1;
 
-				return { ...e, upvotes: e.upvotes + upDelta, downvotes: e.downvotes + downDelta, userAction: actionType };
+				return {
+					...e,
+					upvotes: e.upvotes + upDelta,
+					downvotes: e.downvotes + downDelta,
+					userAction: actionType
+				};
 			}
 		});
 	}

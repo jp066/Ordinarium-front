@@ -6,12 +6,13 @@
 	import liturgicalVesperas from '$lib/assets/liturgical_vesperas.png';
 	import liturgicalCompletas from '$lib/assets/liturgical_completas.png';
 
-	// Receive data loaded by the universal load function (+page.ts)
+	// Receive data loaded by the universal load function (+page.ts) and layout loader (+layout.server.ts)
 	let { data } = $props<{
 		data: {
 			churches: any[];
 			schedules: any[];
 			liturgiaData: any;
+			user?: { name: string; avatar: string; email: string };
 		};
 	}>();
 
@@ -69,5 +70,6 @@
 		churches={data.churches}
 		schedules={data.schedules}
 		liturgiaData={data.liturgiaData}
+		user={data.user}
 	/>
 </div>

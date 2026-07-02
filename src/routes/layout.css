@@ -197,3 +197,25 @@ body {
 	}
 }
 
+/* Premium Quick Access Buttons & micro-interactions */
+.quick-access-btn {
+	transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quick-access-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(201, 168, 76, 0.12);
+}
+
+.quick-access-btn:active {
+	transform: scale(0.95);
+}
+
+.glow-hover {
+	transition: all 0.3s ease;
+}
+
+.glow-hover:hover {
+	border-color: rgba(201, 168, 76, 0.35) !important;
+	box-shadow: 0 0 16px rgba(201, 168, 76, 0.08);
+}

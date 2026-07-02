@@ -496,17 +496,14 @@
 					<div
 						class="border border-border-dark shadow-md rounded-2xl overflow-hidden flex flex-col p-5 select-none bg-bg-card text-text-main"
 					>
-						<div class="flex items-center gap-2">
+						<div class="flex items-center gap-3">
 							<span
-								class="text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 rounded border transition-colors duration-200
-								{liturgicalColorStyles.bg} {liturgicalColorStyles.text} {liturgicalColorStyles.border}"
+								class="text-[9px] uppercase font-extrabold tracking-widest {liturgicalColorStyles.text}"
 							>
 								{activeCelebration.cor}
 							</span>
 							{#if activeCelebration.principal}
-								<span
-									class="text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 rounded border border-brand-gold/20 bg-brand-gold-dim text-brand-gold"
-								>
+								<span class="text-[9px] uppercase font-extrabold tracking-widest text-brand-gold">
 									Celebração Recomendada
 								</span>
 							{/if}

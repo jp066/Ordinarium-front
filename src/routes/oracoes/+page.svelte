@@ -4,7 +4,6 @@
 	import SEO from '$lib/components/SEO.svelte';
 	import {
 		Flame,
-		BookOpen,
 		Search,
 		Check,
 		Copy,
@@ -88,6 +87,9 @@
 	let expandedCategories = $state<Record<string, boolean>>({
 		Introdução: true // Keep introduction open by default
 	});
+
+	// Confession guide open/collapsed state
+	let showConfessionGuide = $state(false);
 
 	// Checked reflection questions mapping
 	let checkedQuestions = $state<Record<string, boolean>>({});
@@ -410,7 +412,7 @@
 									<div class="flex justify-between items-start shrink-0 mb-4 select-none">
 										<div class="flex flex-col gap-1">
 											<span
-												class="text-[9px] px-2 py-0.5 rounded border border-brand-gold/25 bg-brand-gold/10 text-brand-gold uppercase font-bold tracking-wide self-start leading-none"
+												class="text-[9px] font-extrabold uppercase tracking-widest text-brand-gold self-start"
 											>
 												Oração Recomendada
 											</span>
@@ -536,61 +538,78 @@
 			<div class="flex-1 w-full overflow-y-auto pr-1 pb-16 space-y-6 scroll-smooth">
 				<!-- Confession Steps Guide card -->
 				<div class="border border-border-dark bg-bg-card/40 rounded-2xl p-5 flex flex-col gap-4">
-					<div class="flex items-center gap-2.5 border-b border-border-dark/40 pb-3">
-						<div
-							class="h-6 w-6 rounded-md bg-brand-wine-dim border border-brand-wine/25 flex items-center justify-center shrink-0"
-						>
-							<Info size={12} class="text-brand-wine" />
+					<button
+						onclick={() => (showConfessionGuide = !showConfessionGuide)}
+						class="w-full flex items-center justify-between text-left cursor-pointer bg-transparent border-none p-0 focus:outline-none"
+					>
+						<div class="flex items-center gap-2.5">
+							<div
+								class="h-6 w-6 rounded-md bg-brand-wine-dim border border-brand-wine/25 flex items-center justify-center shrink-0"
+							>
+								<Info size={12} class="text-brand-wine" />
+							</div>
+							<h3
+								class="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-gold leading-none"
+							>
+								Como fazer uma boa Confissão?
+							</h3>
 						</div>
-						<h3
-							class="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-gold leading-none"
-						>
-							Como fazer uma boa Confissão?
-						</h3>
-					</div>
+						<div class="text-text-muted/50 group-hover:text-text-main transition-colors">
+							{#if showConfessionGuide}
+								<ChevronDown size={14} />
+							{:else}
+								<ChevronRight size={14} />
+							{/if}
+						</div>
+					</button>
 
-					<div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+					{#if showConfessionGuide}
 						<div
-							class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
-						>
-							<span class="text-xs font-bold text-brand-gold">1. Exame</span>
-							<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
-								Fazer uma busca diligente dos pecados na memória.
-							</p>
+							class="h-[1px] bg-gradient-to-r from-transparent via-border-dark/60 to-transparent my-1"
+						></div>
+						<div class="grid grid-cols-1 sm:grid-cols-5 gap-4 animate-fade-in mt-1">
+							<div
+								class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
+							>
+								<span class="text-xs font-bold text-brand-gold">1. Exame</span>
+								<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
+									Fazer uma busca diligente dos pecados na memória.
+								</p>
+							</div>
+							<div
+								class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
+							>
+								<span class="text-xs font-bold text-brand-gold">2. Contrição</span>
+								<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
+									Arrepender-se de coração por ter ofendido a Deus.
+								</p>
+							</div>
+							<div
+								class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
+							>
+								<span class="text-xs font-bold text-brand-gold">3. Propósito</span>
+								<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
+									Tomar a firme resolução de evitar os pecados.
+								</p>
+							</div>
+							<div
+								class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
+							>
+								<span class="text-xs font-bold text-brand-gold">4. Acusação</span>
+								<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
+									Declarar todos os pecados confessáveis ao sacerdote.
+								</p>
+							</div>
+							<div
+								class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
+							>
+								<span class="text-xs font-bold text-brand-gold">5. Penitência</span>
+								<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
+									Cumprir de bom grado a penitência imposta pelo confessor.
+								</p>
+							</div>
 						</div>
-						<div
-							class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
-						>
-							<span class="text-xs font-bold text-brand-gold">2. Contrição</span>
-							<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
-								Arrepender-se de coração por ter ofendido a Deus.
-							</p>
-						</div>
-						<div
-							class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
-						>
-							<span class="text-xs font-bold text-brand-gold">3. Propósito</span>
-							<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
-								Tomar a firme resolução de evitar os pecados.
-							</p>
-						</div>
-						<div
-							class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
-						>
-							<span class="text-xs font-bold text-brand-gold">4. Acusação</span>
-							<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
-								Declarar todos os pecados confessáveis ao sacerdote.
-							</p>
-						</div>
-						<div
-							class="p-3 bg-bg-dark/40 border border-border-dark/60 rounded-xl flex flex-col gap-1.5 text-center sm:text-left"
-						>
-							<span class="text-xs font-bold text-brand-gold">5. Penitência</span>
-							<p class="text-[10px] sm:text-xs text-text-muted leading-relaxed">
-								Cumprir de bom grado a penitência imposta pelo confessor.
-							</p>
-						</div>
-					</div>
+					{/if}
 				</div>
 
 				<!-- Categories questions list -->

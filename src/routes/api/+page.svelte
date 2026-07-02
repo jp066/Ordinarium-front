@@ -86,9 +86,7 @@
 	]}
 />
 
-<div
-	class="h-dvh w-screen bg-transparent text-text-main font-sans flex flex-col overflow-hidden"
->
+<div class="h-dvh w-screen bg-transparent text-text-main font-sans flex flex-col overflow-hidden">
 	<!-- Top Bar (fixed header for the doc page) -->
 	<div
 		class="h-14 shrink-0 border-b border-border-dark bg-bg-sidebar/90 backdrop-blur-md flex items-center justify-between px-6 z-10"
