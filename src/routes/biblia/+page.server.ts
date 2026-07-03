@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types';
 import { env } from '$env/dynamic/private';
 
 export const load: PageServerLoad = async ({ url, fetch }) => {
-	const baseUrl = env.PRAYERS_API_URL || 'http://127.0.0.1:8000/api/v1';
+	const baseUrl = env.PRAYERS_API_URL || 'http://127.0.0.1:8080/api/v1';
 
 	const bookParam = url.searchParams.get('livro') || 'mt';
 	const chapterParam = parseInt(url.searchParams.get('capitulo') || '1', 10);
