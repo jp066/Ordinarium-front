@@ -1,8 +1,7 @@
-import type { PageServerLoad } from './$types';
-import { env } from '$env/dynamic/private';
+import type { PageLoad } from './$types';
 
-export const load: PageServerLoad = async ({ fetch }) => {
-	const baseUrl = env.PRAYERS_API_URL || 'http://127.0.0.1:8080/api/v1';
+export const load: PageLoad = async ({ fetch }) => {
+	const baseUrl = import.meta.env.VITE_PRAYERS_API_URL || 'http://127.0.0.1:8080/api/v1';
 
 	try {
 		const [prayersRes, randomRes, examinationRes] = await Promise.all([
@@ -25,7 +24,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 			randomPrayer = await randomRes.json();
 		}
 
-		let examination = [];
+		let examination: any[] = [];
 		if (examinationRes && examinationRes.ok) {
 			examination = await examinationRes.json();
 		}

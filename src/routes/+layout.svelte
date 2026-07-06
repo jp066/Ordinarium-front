@@ -27,6 +27,8 @@
 	} from '@lucide/svelte';
 	import { theme } from '$lib/theme.svelte';
 	import logo from '$lib/assets/logo-removebg.png';
+	import OfflineOverlay from '$lib/components/OfflineOverlay.svelte';
+	import { hideSplash } from '$lib/capacitor/splash';
 
 	// Svelte 5 Runes for children and layout data
 	let { children, data } = $props<{
@@ -74,6 +76,8 @@
 			navState.activeRoute = 'Sugerir';
 		} else if (path === '/api') {
 			navState.activeRoute = 'API';
+		} else if (path === '/perfil') {
+			navState.activeRoute = 'Perfil';
 		} else {
 			navState.activeRoute = 'Página inicial';
 		}
@@ -170,6 +174,7 @@
 	// Initialize theme on client mount
 	onMount(() => {
 		theme.init();
+		hideSplash();
 	});
 
 	// Geolocation state for locating nearest church
@@ -244,7 +249,7 @@
 		<aside
 			class="hidden md:flex flex-col {sidebarCollapsed
 				? 'w-20 p-3'
-				: 'w-64 p-5'} bg-bg-sidebar border-r border-border-dark select-none shrink-0 h-full justify-between relative z-20 transition-all duration-300 ease-in-out"
+				: 'w-64 p-5'} bg-bg-sidebar border-y border-r border-border-dark rounded-r-[24px] select-none shrink-0 h-full justify-between relative z-20 transition-all duration-300 ease-in-out"
 		>
 			<div class="flex flex-col gap-6 overflow-y-auto min-h-0 flex-1 pr-1">
 				<!-- Brand Logo & Gothic Title -->
@@ -440,8 +445,8 @@
 				{#if data.user}
 					<div class="mt-auto pt-4 border-t border-border-dark/30 shrink-0">
 						{#if sidebarCollapsed}
-							<button
-								onclick={() => handleComingSoon(`Perfil de ${data.user.name}`)}
+							<a
+								href="/perfil"
 								class="w-full flex items-center justify-center p-1 hover:bg-bg-card/45 rounded-xl transition-all duration-200 cursor-pointer"
 								title="{data.user.name} - Ver perfil"
 							>
@@ -450,10 +455,10 @@
 									alt="{data.user.name} Avatar"
 									class="h-9 w-9 rounded-full object-cover border border-border-dark bg-bg-dark"
 								/>
-							</button>
+							</a>
 						{:else}
-							<button
-								onclick={() => handleComingSoon(`Perfil de ${data.user.name}`)}
+							<a
+								href="/perfil"
 								class="w-full flex items-center justify-between p-2 hover:bg-bg-card/45 rounded-xl transition-all duration-200 cursor-pointer group text-left"
 							>
 								<div class="flex items-center gap-3 min-w-0">
@@ -474,7 +479,7 @@
 									size={13}
 									class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0"
 								/>
-							</button>
+							</a>
 						{/if}
 					</div>
 				{/if}
@@ -517,13 +522,13 @@
 					</button>
 
 					{#if data.user}
-						<button
-							onclick={() => handleComingSoon(`Perfil de ${data.user.name}`)}
+						<a
+							href="/perfil"
 							class="h-8 w-8 rounded-full overflow-hidden border border-border-dark active:scale-95 transition-all duration-200 cursor-pointer"
 							aria-label="Perfil do usuário"
 						>
 							<img src={data.user.avatar} alt={data.user.name} class="h-full w-full object-cover" />
-						</button>
+						</a>
 					{/if}
 				</div>
 			</header>
@@ -541,7 +546,7 @@
 
 					<!-- Drawer container slide-out from the left -->
 					<aside
-						class="relative flex flex-col w-64 bg-bg-sidebar border-r border-border-dark h-full p-5 justify-between z-10"
+						class="relative flex flex-col w-64 bg-bg-sidebar border-y border-r border-border-dark rounded-r-[24px] h-full p-5 justify-between z-10"
 						transition:fly={{ x: -260, duration: 200 }}
 					>
 						<div class="flex flex-col gap-6 overflow-y-auto min-h-0 flex-1 pr-1 pb-4">
@@ -672,11 +677,9 @@
 						<!-- Mobile User Profile Card -->
 						{#if data.user}
 							<div class="mt-auto pt-4 border-t border-border-dark/30 shrink-0">
-								<button
-									onclick={() => {
-										handleComingSoon(`Perfil de ${data.user.name}`);
-										navState.showMobileMenu = false;
-									}}
+								<a
+									href="/perfil"
+									onclick={() => (navState.showMobileMenu = false)}
 									class="w-full flex items-center justify-between p-2 hover:bg-bg-card/45 rounded-xl transition-all duration-200 cursor-pointer group text-left"
 								>
 									<div class="flex items-center gap-3 min-w-0">
@@ -698,7 +701,7 @@
 										size={13}
 										class="text-text-muted/40 group-hover:text-text-main group-hover:translate-x-0.5 transition-all shrink-0"
 									/>
-								</button>
+								</a>
 							</div>
 						{/if}
 					</aside>
@@ -712,3 +715,5 @@
 		</div>
 	</div>
 {/if}
+
+<OfflineOverlay />

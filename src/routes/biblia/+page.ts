@@ -1,8 +1,7 @@
-import type { PageServerLoad } from './$types';
-import { env } from '$env/dynamic/private';
+import type { PageLoad } from './$types';
 
-export const load: PageServerLoad = async ({ url, fetch }) => {
-	const baseUrl = env.PRAYERS_API_URL || 'https://ordinarium-prayers.onrender.com/api/v1';
+export const load: PageLoad = async ({ url, fetch }) => {
+	const baseUrl = import.meta.env.VITE_PRAYERS_API_URL || 'http://127.0.0.1:8080/api/v1';
 
 	const bookParam = url.searchParams.get('livro') || 'mt';
 	const chapterParam = parseInt(url.searchParams.get('capitulo') || '1', 10);
@@ -24,7 +23,9 @@ export const load: PageServerLoad = async ({ url, fetch }) => {
 		let selectedBookInfo = null;
 
 		if (searchParam && searchParam.trim().length >= 3) {
-			const searchRes = await fetch(`${baseUrl}/bible/search?q=${encodeURIComponent(searchParam)}`);
+			const searchRes = await fetch(
+				`${baseUrl}/bible/search?q=${encodeURIComponent(searchParam)}`
+			);
 			if (searchRes.ok) {
 				searchResults = await searchRes.json();
 			}

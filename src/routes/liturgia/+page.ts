@@ -1,11 +1,13 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 
-export const load: PageServerLoad = async ({ url, fetch }) => {
+export const load: PageLoad = async ({ url, fetch }) => {
 	const dia = url.searchParams.get('dia');
 	const mes = url.searchParams.get('mes');
 	const ano = url.searchParams.get('ano');
 
-	let apiUrl = 'https://liturgia.up.railway.app/v3/';
+	const liturgiaBaseUrl =
+		import.meta.env.VITE_LITURGIA_API_URL || 'https://liturgia.up.railway.app/v3';
+	let apiUrl = `${liturgiaBaseUrl}/`;
 	if (dia) {
 		const queryParams = new URLSearchParams();
 		queryParams.set('dia', dia);

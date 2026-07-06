@@ -1,10 +1,25 @@
 import tailwindcss from '@tailwindcss/vite';
 import nodeAdapter from '@sveltejs/adapter-node';
 import vercelAdapter from '@sveltejs/adapter-vercel';
+import staticAdapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 const isVercel = process.env.VERCEL === '1';
+const isMobile = process.env.BUILD_TARGET === 'mobile';
+
+function getAdapter() {
+	if (isMobile) {
+		return staticAdapter({
+			pages: 'build-mobile',
+			assets: 'build-mobile',
+			fallback: 'index.html',
+			precompress: false,
+			strict: true
+		});
+	}
+	return isVercel ? vercelAdapter() : nodeAdapter();
+}
 
 export default defineConfig({
 	plugins: [
@@ -15,11 +30,7 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-
-			// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-			// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-			// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-			adapter: isVercel ? vercelAdapter() : nodeAdapter()
+			adapter: getAdapter()
 		})
 	],
 	server: {
